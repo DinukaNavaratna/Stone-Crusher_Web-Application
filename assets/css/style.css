@@ -1,0 +1,175 @@
+#chart-input {
+  display: block;
+}
+#chart-body {
+  display: none;
+}
+
+.chart {
+  width: 100%;
+}
+.chart .card {
+  cursor: pointer;
+}
+.chart td {
+  text-align: center;
+  height: 50px;
+}
+.chart .arrow {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+.chart .arrow-body {
+  margin: 0%;
+}
+.chart .arrow-body-p {
+  margin: 0%;
+  font-size: 80%;
+}
+
+.chart .borders {
+  border: 1px solid black;
+}
+
+.line-container {
+  display: flex;
+  height: 100%;
+  padding-top: 20%;
+}
+
+.line {
+  height: 1px;
+  width: 50%;
+  background: black;
+  position: relative;
+  margin-left: 10%;
+}
+
+.line.arrow-right:after {
+  position: absolute;
+  content: '';
+  bottom: -8px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid black;
+}
+
+.line.arrow-left:after {
+  position: absolute;
+  content: '';
+  top: -8px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid black;
+}
+
+.lineh {
+  height: 100%;
+  width: 1px;
+  background: black;
+  position: relative;
+}
+
+.linev {
+  height: 1px;
+  width: 50%;
+  background: black;
+  position: relative;
+  margin-top: auto;
+  margin-left: -50%;
+}
+
+.line-container p {
+  position: absolute;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  align-self: center;
+  font-size: 80%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  z-index: 99; /* Sit on top */
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -3%;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 3% 5% 1% 5%;
+  color: white;
+}
+
+.modal-body {
+  padding: 5%;
+}
+
+.modal-body table {
+  width: 100%;
+}
+.modal-body table tr {
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+.modal-body table td {
+  padding: 0.5%;
+}
+.modal-body table td:nth-child(1){
+  font-weight: bold;
+}
+
