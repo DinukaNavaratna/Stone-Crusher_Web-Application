@@ -31,14 +31,43 @@ function open_input2(){
 
     output_per_hour = monthly_output_capacity/(working_days_per_month*shifts_per_day*hours_per_shift);
     output_per_hour = Math.ceil(output_per_hour/5)*5;
-    document.getElementById('Bin_PrimaryCrusher1').innerHTML = output_per_hour+" t/h";
-    
+    required_input_capacity = 100/95*output_per_hour;
+    required_input_capacity = Math.round(required_input_capacity * 100) / 100;
+    document.getElementById('feeder-jaw').innerHTML = required_input_capacity+" t/h";
+    document.getElementById('jaw-cone').innerHTML = required_input_capacity+" t/h";
+    document.getElementById('hopper_output').innerHTML = String(required_input_capacity*2)+" t/h";
+    var a = document.getElementById('r5_output_size2').value;
+    var ad = a/((a*0.94)-(7*0.342));
+    var efficiency = 0;
+
+    $.ajax({
+        url:"http://localhost/Stone%20Crusher/assets/php/functions.php",
+        type: "GET",
+        data: {"efficiency": ad},
+        success:function(response){
+            //console.log(response);
+            if(response.includes("failed")){
+                alert("Efficiency Calculation Failed");
+            } else {
+                efficiency = response;
+                var screen1_return = required_input_capacity*((100-efficiency)/100);
+                screen1_return = Math.round(screen1_return * 100) / 100;
+                document.getElementById("cone-s1").innerHTML = (required_input_capacity+screen1_return)+" t/h";
+                document.getElementById("screen1_return").innerHTML = screen1_return+" t/h";
+            }
+        },
+        error: function (jqXHR, exception) {
+            alert("Error");
+        }
+    });
+
 
     $.ajax({
         url:"http://localhost/Stone%20Crusher/assets/php/functions.php",
         type: "GET",
         data: {"max_input_size": "210", "output_size_min": "0", "output_size_max": "0", "capacity": "5"},
         success:function(response){
+            //console.log(response);
             if(response.includes("failed")){
                 alert("Failed");
             } else {
@@ -46,11 +75,15 @@ function open_input2(){
                 crushers = obj.crushers;
                 for(var crusher in crushers){
                     try{
-                        document.getElementById(crusher+"1").innerHTML = crushers[crusher].Model[0];
-                        document.getElementById(crusher+"2").innerHTML = crushers[crusher].Model[1];
+                        if(crusher == "Feeder"){
+                            document.getElementById(crusher).innerHTML = crushers[crusher].Model[0];
+                        } else {
+                            document.getElementById(crusher+"1").innerHTML = crushers[crusher].Model[0];
+                            document.getElementById(crusher+"2").innerHTML = crushers[crusher].Model[1];
+                        }
                     } catch(x){}
                 }
-
+                console.log(crushers);
                 /*
                 for(var crusher in crushers){
                     console.log(crusher);
@@ -85,7 +118,7 @@ function oo(type){
     modal.style.display = "block";
     var span = document.getElementsByClassName("close")[0];
     crusher_type = type.replace(/\s/g,'');
-    
+    alert(crusher_type);
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
@@ -100,7 +133,7 @@ function oo(type){
 
     document.getElementById("modal-topic").innerHTML = type;
 
-    var table_body_content = "<tr><td></td><th>Short Term</th><th>Long Term</th></tr>";
+    var table_body_content = "<tr><td></td><th>Low Budget</th><th>High Budget</th></tr>";
     for(var i in crushers[crusher_type]){
         var key = i;
         var value1 = crushers[crusher_type][i][0];

@@ -87,34 +87,34 @@
                 <div class="mb-3">
                   <label for="m_type">Mineral Type</label>
                   <select  class="form-control" name="m_type" id="m_type" aria-label="Name">
-                    <option value="default" disabled selected>Select the Mineral Type</option>
-                    <option value="Aggregate">Aggregate</option>
+                    <option value="default" disabled>Select the Mineral Type</option>
+                    <option value="Aggregate" selected>Aggregate</option>
                     <option value="Quatz">Quatz</option>
                   </select>
                 </div>
                 <div class="mb-3 input-suffix mm">
                   <label for="input_size">Input Size</label>
                   <div>
-                    <input type="number" min="0" id="input_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="input_size">
+                    <input type="number" min="0" id="input_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" value="152" aria-label="input_size">
                     <p style="width: auto; display: inline-block; padding: 0% 2%;">x</p>
-                    <input type="number" min="0" id="input_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="input_size">
+                    <input type="number" min="0" id="input_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" value="228" aria-label="input_size">
                   </div>
                 </div>
                 <div class="mb-3 input-suffix ton">
                   <label for="monthly_output_capacity">Monthly Output Capacity</label>
-                  <input type="number" min="0" id="monthly_output_capacity" class="form-control" placeholder="1000" aria-label="Monthly Output Capacity">
+                  <input type="number" min="0" id="monthly_output_capacity" class="form-control" placeholder="1000" value="8000" aria-label="Monthly Output Capacity">
                 </div>
                 <div class="mb-3 input-suffix days">
                   <label for="working_days_per_month">No. of Working Days per Month</label>
-                  <input type="number" min="0" id="working_days_per_month" class="form-control" placeholder="28" aria-label="Working Days per Month">
+                  <input type="number" min="0" id="working_days_per_month" class="form-control" placeholder="28" value="28" aria-label="Working Days per Month">
                 </div>
                 <div class="mb-3 input-suffix shifts">
                   <label for="shifts_per_day">No. of Shifts per Day</label>
-                  <input type="number" min="0" id="shifts_per_day" class="form-control" placeholder="2" aria-label="Shifts per Day">
+                  <input type="number" min="0" id="shifts_per_day" class="form-control" placeholder="2" value="2" aria-label="Shifts per Day">
                 </div>
                 <div class="mb-3 input-suffix hours">
                   <label for="hours_per_shift">No. of Hours per Shift</label>
-                  <input type="number" min="0" id="hours_per_shift" class="form-control" placeholder="8" aria-label="Hours per Shift">
+                  <input type="number" min="0" id="hours_per_shift" class="form-control" placeholder="8" value="8" aria-label="Hours per Shift">
                 </div>
                 <div class="text-center">
                   <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onclick="open_input2();">Proceed</button>
@@ -131,10 +131,10 @@
             <div class="card-body">
               <form role="form text-left">
                 <div class="mb-3">
-                  <p style="text-align: center;">Output Particle Sizes & Capacities</p>
+                  <p style="text-align: center;">Output Particle Sizes</p>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix mm" style="width: 60%; display: inline-block;">
+                  <div class="input-suffix mm" style="width: 100%; display: inline-block;">
                     <label>Output Particle Size</label>
                     <div>
                       <input type="number" min="0" id="r1_output_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
@@ -142,16 +142,9 @@
                       <input type="number" min="0" id="r1_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
-                  <div class="input-suffix percentage" style="width: 30%; display: inline-block;">
-                    <label>Output Particle Size</label>
-                    <div>
-                      <p style="width: 20%; display: inline-block; padding: 0% 2%;">&#8594;</p>
-                      <input type="number" min="0" max="100" id="r1_output_percentage" class="form-control" style="width: 50%; display: inline-block;" placeholder="100" aria-label="output_size">
-                    </div>
-                  </div>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix mm" style="width: 60%; display: inline-block;">
+                  <div class="input-suffix mm" style="width: 100%; display: inline-block;">
                     <label>Output Particle Size</label>
                     <div>
                       <input type="number" min="0" id="r2_output_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
@@ -159,16 +152,9 @@
                       <input type="number" min="0" id="r2_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
-                  <div class="input-suffix percentage" style="width: 30%; display: inline-block;">
-                    <label>Output Particle Size</label>
-                    <div>
-                      <p style="width: 20%; display: inline-block; padding: 0% 2%;">&#8594;</p>
-                      <input type="number" min="0" max="100" id="r2_output_percentage" class="form-control" style="width: 50%; display: inline-block;" placeholder="100" aria-label="output_size">
-                    </div>
-                  </div>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix mm" style="width: 60%; display: inline-block;">
+                  <div class="input-suffix mm" style="width: 100%; display: inline-block;">
                     <label>Output Particle Size</label>
                     <div>
                       <input type="number" min="0" id="r3_output_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
@@ -176,16 +162,9 @@
                       <input type="number" min="0" id="r3_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
-                  <div class="input-suffix percentage" style="width: 30%; display: inline-block;">
-                    <label>Output Particle Size</label>
-                    <div>
-                      <p style="width: 20%; display: inline-block; padding: 0% 2%;">&#8594;</p>
-                      <input type="number" min="0" max="100" id="r3_output_percentage" class="form-control" style="width: 50%; display: inline-block;" placeholder="100" aria-label="output_size">
-                    </div>
-                  </div>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix mm" style="width: 60%; display: inline-block;">
+                  <div class="input-suffix mm" style="width: 100%; display: inline-block;">
                     <label>Output Particle Size</label>
                     <div>
                       <input type="number" min="0" id="r4_output_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
@@ -193,28 +172,14 @@
                       <input type="number" min="0" id="r4_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
-                  <div class="input-suffix percentage" style="width: 30%; display: inline-block;">
-                    <label>Output Particle Size</label>
-                    <div>
-                      <p style="width: 20%; display: inline-block; padding: 0% 2%;">&#8594;</p>
-                      <input type="number" min="0" max="100" id="r4_output_percentage" class="form-control" style="width: 50%; display: inline-block;" placeholder="100" aria-label="output_size">
-                    </div>
-                  </div>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix mm" style="width: 60%; display: inline-block;">
+                  <div class="input-suffix mm" style="width: 100%; display: inline-block;">
                     <label>Output Particle Size</label>
                     <div>
                       <input type="number" min="0" id="r5_output_size1" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                       <p style="width: auto; display: inline-block; padding: 0% 2%;">x</p>
                       <input type="number" min="0" id="r5_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
-                    </div>
-                  </div>
-                  <div class="input-suffix percentage" style="width: 30%; display: inline-block;">
-                    <label>Output Particle Size</label>
-                    <div>
-                      <p style="width: 20%; display: inline-block; padding: 0% 2%;">&#8594;</p>
-                      <input type="number" min="0" max="100" id="r5_output_percentage" class="form-control" style="width: 50%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
                 </div>
@@ -258,25 +223,27 @@
             <tbody>
               <tr>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Bin');">
+                  <h6 class="text-center mb-0">Hopper</h6>
+                  <div class="triangle_down"></div>
+                  <span id="hopper_output">0 t/h</span>
+                  <!--
+                  <div class="card">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Bin</h6>
+                      <h6 class="text-center mb-0">Hopper</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Bin1">#00</span><br>
-                      <span class="text-xs" id="Bin2">#00<span>
                     </div>
                   </div>
+                  -->
                 </td>
                 <td rowspan="2">
-                  <p class="arrow-body">&#8594;</p><p class="arrow-body-p" id="Bin_PrimaryCrusher1">10.53 t/h</p>
+                  <p class="arrow-body">&#8594;</p><p class="arrow-body-p" id="Bin_PrimaryCrusher1"></p>
                 </td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Primary Crusher');">
+                  <div class="card" onclick="oo('Feeder');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Primary Crusher</h6>
+                      <h6 class="text-center mb-0">Feeder</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="PrimaryCrusher1">#000001</span><br>
-                      <span class="text-xs" id="PrimaryCrusher2">#000001</span>
+                      <span class="text-xs" id="Feeder">#000000</span><br>
                     </div>
                   </div>
                 </td>
@@ -291,7 +258,7 @@
                 <td></td>
                 <td></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">10.53 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="feeder-jaw">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
               </tr>
               
@@ -299,12 +266,12 @@
                 <td></td>
                 <td></td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Crusher 2');">
+                  <div class="card" onclick="oo('Jaw Crusher');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">2nd Crusher</h6>
+                      <h6 class="text-center mb-0">Jaw Crusher</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher21">#000001</span><br>
-                      <span class="text-xs" id="Crusher22">#000001</span>
+                      <span class="text-xs" id="JawCrusher1">#000000</span><br>
+                      <span class="text-xs" id="JawCrusher2">#000000</span>
                     </div>
                   </div>
                 </td>
@@ -313,21 +280,15 @@
               <tr>
                 <td></td>
                 <td></td>
-                <td rowspan="3">
-                  <div class="line-container">
-                    <span class="line arrow-left"></span>
-                    <span class="lineh"></span>
-                    <span class="linev"></span>
-                    <p>0.53 t/h</p>
-                  </div>
-                </td>
+                <td></td>
+                <td></td>
               </tr>
               
               <tr>
                 <td></td>
                 <td></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">10.53 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="jaw-cone">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
               </tr>
               
@@ -335,12 +296,12 @@
                 <td></td>
                 <td></td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Crusher 3');">
+                  <div class="card" onclick="oo('Cone Crusher');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">3rd Crusher</h6>
+                      <h6 class="text-center mb-0">Cone Crusher</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher31">#000001</span><br>
-                      <span class="text-xs" id="Crusher32">#000001</span>
+                      <span class="text-xs" id="ConeCrusher1">#000000</span><br>
+                      <span class="text-xs" id="ConeCrusher2">#000000</span>
                     </div>
                   </div>
                 </td>
@@ -354,7 +315,7 @@
                     <span class="line arrow-left"></span>
                     <span class="lineh"></span>
                     <span class="linev"></span>
-                    <p>0.53 t/h</p>
+                    <p id="screen1_return">0 t/h</p>
                   </div>
                 </td>
               </tr>
@@ -363,7 +324,7 @@
                 <td></td>
                 <td></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">10.53 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="cone-s1">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -373,12 +334,12 @@
                 <td>
                 </td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Crusher 4');">
+                  <div class="card" onclick="oo('Screen 1');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Crusher 4</h6>
+                      <h6 class="text-center mb-0">Screen 1</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher41">#000001</span><br>
-                      <span class="text-xs" id="Crusher42">#000001</span>
+                      <span class="text-xs" id="Crusher41">#000000</span><br>
+                      <span class="text-xs" id="Crusher42">#000000</span>
                     </div>
                   </div>
                 </td>
@@ -388,21 +349,15 @@
               <tr>
                 <td></td>
                 <td></td>
-                <td rowspan="3">
-                  <div class="line-container">
-                    <span class="line arrow-left"></span>
-                    <span class="lineh"></span>
-                    <span class="linev"></span>
-                    <p>0.53 t/h</p>
-                  </div>
-                </td>
+                <td></td>
+                <td></td>
               </tr>
 
               <tr>
-                <td></td>
-                <td></td>
+                <td><div class="triangle_up"></div><span id="screen1_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p" id="Bin_PrimaryCrusher1"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">10.53 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="2">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -411,12 +366,12 @@
                 <td></td>
                 <td></td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('Crusher 5');">
+                  <div class="card" onclick="oo('Screen 2');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Crusher 5</h6>
+                      <h6 class="text-center mb-0">Screen 2</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher51">#000001</span><br>
-                      <span class="text-xs" id="Crusher52">#000001</span>
+                      <span class="text-xs" id="Crusher51">#000000</span><br>
+                      <span class="text-xs" id="Crusher52">#000000</span>
                     </div>
                   </div>
                 </td>
@@ -434,7 +389,7 @@
                 <td></td>
                 <td></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">10.53 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>

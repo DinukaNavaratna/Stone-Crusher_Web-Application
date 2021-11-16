@@ -1,0 +1,22 @@
+Output Capacity Per hour:
+
+monthly output capacity/
+(no of working days per month*
+no of shifts per day*
+no of hours per shift)
+
+8000/(28*2*8) t/h
+
+
+Required input capacity:
+
+100/95*output capacity per hour
+
+
+Feeder -> required input capacity -> primary crisher (jaw)
+
+select jaw crusher
+input capacity + input size given by user
+
+select cone crusher
+input capacity (output capacity of jaw) + input size given by user

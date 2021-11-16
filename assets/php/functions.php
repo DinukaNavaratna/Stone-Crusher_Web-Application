@@ -1,4 +1,20 @@
 <?php
+
+if(isset($_GET['efficiency'])){
+    require_once 'db_con.php';
+    try {        
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "select * from screen_efficiency order by abs(ad - ".$_GET['efficiency'].") limit 1;";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo $results[0]['e'];
+    } catch(PDOException $e) {
+        echo "failed : " . $e->getMessage();
+    }
+    $conn = null;
+    exit;
+}
 /*
     $PrimaryCrusher = array(
             "Model"=>array('', ''),
@@ -25,27 +41,49 @@
     );
 */
 
-if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && isset($_GET['output_size_max']) && isset($_GET['capacity'])){
+else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && isset($_GET['output_size_max']) && isset($_GET['capacity'])){
     require_once 'db_con.php';
     try {        
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql1 = "SELECT * FROM `primary_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        //Feeder
+        $sql0 = "SELECT * FROM `feeder` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity >= ".$_GET['capacity']." ;";
+        $stmt0 = $conn->prepare($sql0);
+        $stmt0->execute();
+        $results0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Jaw Crusher
+        $sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
         $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-        $sql2 = "SELECT * FROM `primary_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        $sql2 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
         $stmt2 = $conn->prepare($sql2);
         $stmt2->execute();
         $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Cone Crusher
+        $sql3 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->execute();
+        $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+        $sql4 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+        $stmt4 = $conn->prepare($sql4);
+        $stmt4->execute();
+        $results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
 
         $crushers = '{"crushers": {'.
-                        '"Bin": {' .
+                        '"Hopper": {' .
                             '"Model":["Bin400 x 600", "Bin400 x 800"],' .
                             '"Max Feeding Size (mm)":["250",  "300"],' .
-                            '"Max Capacity (t/h)":["20",  "30"],' .
+                            '"Capacity (t/h)":["20",  "30"],' .
                             '"Weight (t)":["2.9",  "3.5"]' .
                         '},' .
-                        '"PrimaryCrusher": {' .
+                        '"Feeder": {' .
+                            '"Model":["'.$results0[0]['model'].'", "N/A"],' .
+                            '"Max Feeding Size (mm)":["'.$results0[0]['max_feed_size'].'", "N/A"],' .
+                            '"Max Capacity (t/h)":["'.$results0[0]['capacity'].'", "N/A"]' .
+                        '},' .
+                        '"JawCrusher": {' .
                             '"Model":["'.$results1[0]['model'].'", "'.$results2[0]['model'].'"],' .
                             '"Feed Opening Size (mm)":["'.$results1[0]['feed_openings'].'",  "'.$results2[0]['feed_openings'].'"],' .
                             '"Max Feeding Size (mm)":["'.$results1[0]['max_feed_size'].'",  "'.$results2[0]['max_feed_size'].'"],' .
@@ -56,16 +94,16 @@ if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && isset($_
                             '"Adjustable Range Of Output Size (mm)":["'.$results1[0]['discharge_size_min'].' - '.$results1[0]['discharge_size_max'].'",  "'.$results2[0]['discharge_size_min'].' - '.$results2[0]['discharge_size_max'].'"],' .
                             '"Weight (t)":["'.$results1[0]['weight'].'",  "'.$results2[0]['weight'].'"]' .
                         '},' .
-                        '"Crusher2": {' .
-                            '"Model":["E400 x 600", "E400 x 800"],' .
-                            '"Feed Opening Size (mm)":["400 x 600",  "400 x 600"],' .
-                            '"Max Feeding Size (mm)":["250",  "300"],' .
-                            '"Min Capacity (t/h)":["5",  "10"],' .
-                            '"Max Capacity (t/h)":["20",  "30"],' .
-                            '"rotate_speed":["15",  "15"],' .
-                            '"Motor & Power (kw)":["10",  "10"],' .
-                            '"Adjustable Range Of Output Size (mm)":["5-10",  "10-20"],' .
-                            '"Weight (t)":["2.9",  "3.5"]' .
+                        '"ConeCrusher": {' .
+                            '"Model":["'.$results3[0]['model'].'", "'.$results4[0]['model'].'"],' .
+                            '"Feed Opening Size (mm)":["'.$results3[0]['feed_openings'].'",  "'.$results4[0]['feed_openings'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results3[0]['max_feed_size'].'",  "'.$results4[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results3[0]['capacity_min'].'",  "'.$results4[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results3[0]['capacity_max'].'",  "'.$results4[0]['capacity_max'].'"],' .
+                            '"Rotate Speed":["'.$results3[0]['rotate_speed'].'",  "'.$results4[0]['rotate_speed'].'"],' .
+                            '"Motor & Power (kw)":["'.$results3[0]['motor_power'].'",  "'.$results4[0]['motor_power'].'"],' .
+                            '"Adjustable Range Of Output Size (mm)":["'.$results3[0]['discharge_size_min'].' - '.$results3[0]['discharge_size_max'].'",  "'.$results4[0]['discharge_size_min'].' - '.$results4[0]['discharge_size_max'].'"],' .
+                            '"Weight (t)":["'.$results3[0]['weight'].'",  "'.$results4[0]['weight'].'"]' .
                         '},' .
                         '"Crusher3": {' .
                             '"Model":["B400 x 600", "B400 x 800"],' .

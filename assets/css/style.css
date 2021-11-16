@@ -26,9 +26,29 @@
   margin: 0%;
   font-size: 80%;
 }
-
 .chart .borders {
   border: 1px solid black;
+}
+
+.triangle_down {
+  margin-left: auto;
+  margin-right: auto;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid white;
+  -webkit-filter: drop-shadow(1px 1px 10px rgba(0,0,0,.5));
+  filter: drop-shadow(1px 1px 10px rgba(0,0,0,0.125));
+}
+.triangle_up {
+  margin-left: auto;
+  margin-right: auto;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
 }
 
 .line-container {
