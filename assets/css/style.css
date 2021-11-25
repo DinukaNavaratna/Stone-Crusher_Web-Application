@@ -30,6 +30,22 @@
   border: 1px solid black;
 }
 
+.s1_row {
+  display: none;
+}
+.s2_row {
+  display: none;
+}
+.s3_row {
+  display: none;
+}
+.s4_row {
+  display: none;
+}
+.s5_row {
+  display: none;
+}
+
 .triangle_down {
   margin-left: auto;
   margin-right: auto;
@@ -48,7 +64,9 @@
   height: 0;
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
-  border-bottom: 100px solid red;
+  border-bottom: 100px solid white;
+  -webkit-filter: drop-shadow(1px 1px 10px rgba(0,0,0,.5));
+  filter: drop-shadow(1px 1px 10px rgba(0,0,0,0.125));
 }
 
 .line-container {

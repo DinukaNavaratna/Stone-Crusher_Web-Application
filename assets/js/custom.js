@@ -9,6 +9,7 @@ if (win && document.querySelector('#sidenav-scrollbar')) {
 //--------------------- Inout Box Submit Actions ---------------------------
 var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift;
 var crushers;
+var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2;
 
 function open_input2(){
     m_type = document.getElementById("m_type").value;
@@ -29,6 +30,60 @@ function open_input2(){
         return;
     }
 
+    document.getElementById("chart-input1").style.display = "none";
+    document.getElementById("chart-input2").style.display = "block";
+}
+
+function create_diagram(){
+    r1_output_size1 = document.getElementById("r1_output_size1").value;
+    r1_output_size2 = document.getElementById("r1_output_size2").value;
+    r2_output_size1 = document.getElementById("r2_output_size1").value;
+    r2_output_size2 = document.getElementById("r2_output_size2").value;
+    r3_output_size1 = document.getElementById("r3_output_size1").value;
+    r3_output_size2 = document.getElementById("r3_output_size2").value;
+    r4_output_size1 = document.getElementById("r4_output_size1").value;
+    r4_output_size2 = document.getElementById("r4_output_size2").value;
+    r5_output_size1 = document.getElementById("r5_output_size1").value;
+    r5_output_size2 = document.getElementById("r5_output_size2").value;
+
+    const rows = [];
+
+    if(r5_output_size1 <= 0 || r5_output_size2 <= 0){
+        r5_output_size1 = 0;
+        r5_output_size2 = 0;
+    } else {
+        rows.push([r5_output_size1, r5_output_size2]);
+    }
+    if(r4_output_size1 <= 0 || r4_output_size2 <= 0){
+        r4_output_size1 = 0;
+        r4_output_size2 = 0;
+    } else {
+        rows.push([r4_output_size1, r4_output_size2]);
+    }
+    if(r3_output_size1 <= 0 || r3_output_size2 <= 0){
+        r3_output_size1 = 0;
+        r3_output_size2 = 0;
+    } else {
+        rows.push([r3_output_size1, r3_output_size2]);
+    }
+    if(r2_output_size1 <= 0 || r2_output_size2 <= 0){
+        r2_output_size1 = 0;
+        r2_output_size2 = 0;
+    } else {
+        rows.push([r2_output_size1, r2_output_size2]);
+    }
+    if(r1_output_size1 < 0 || r1_output_size2 <= 0){
+        r1_output_size1 = 0;
+        r1_output_size2 = 0;
+    } else {
+        rows.push([r1_output_size1, r1_output_size2]);
+    }
+    
+    if(rows.length == 0){
+        alert("Please enter atleast one output particle size!");
+        return;
+    }
+
     output_per_hour = monthly_output_capacity/(working_days_per_month*shifts_per_day*hours_per_shift);
     output_per_hour = Math.ceil(output_per_hour/5)*5;
     required_input_capacity = 100/95*output_per_hour;
@@ -36,7 +91,9 @@ function open_input2(){
     document.getElementById('feeder-jaw').innerHTML = required_input_capacity+" t/h";
     document.getElementById('jaw-cone').innerHTML = required_input_capacity+" t/h";
     document.getElementById('hopper_output').innerHTML = String(required_input_capacity*2)+" t/h";
-    var a = document.getElementById('r5_output_size2').value;
+    document.getElementById('s1-s2').innerHTML = required_input_capacity+" t/h";
+    var a = rows[0][1];
+    console.log(a);
     var ad = a/((a*0.94)-(7*0.342));
     var efficiency = 0;
 
@@ -101,12 +158,15 @@ function open_input2(){
         }
     });
 
-    document.getElementById("chart-input1").style.display = "none";
-    document.getElementById("chart-input2").style.display = "block";
-}
 
-function create_diagram(){
-    var r1_output_size1, r1_output_size2, r1_output_percentage;
+    for (let i = 0; i < rows.length; i++) {
+        document.getElementById("s"+(i+1)+"_row1").classList.remove("s"+(i+1)+"_row");
+        document.getElementById("s"+(i+1)+"_row2").classList.remove("s"+(i+1)+"_row");
+        document.getElementById("s"+(i+1)+"_row3").classList.remove("s"+(i+1)+"_row");
+
+        document.getElementById("screen"+(i+1)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" t/h";
+    }
+    
     document.getElementById("chart-input2").style.display = "none";
     document.getElementById("chart-body").style.display = "block";
 }

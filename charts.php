@@ -236,7 +236,7 @@
                   -->
                 </td>
                 <td rowspan="2">
-                  <p class="arrow-body">&#8594;</p><p class="arrow-body-p" id="Bin_PrimaryCrusher1"></p>
+                  <p class="arrow-body">&#8594;</p><p class="arrow-body-p"></p>
                 </td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Feeder');">
@@ -329,7 +329,7 @@
                 <td></td>
               </tr>
               
-              <tr>
+              <tr id="s1_row1" class="s1_row">
                 <td></td>
                 <td>
                 </td>
@@ -338,31 +338,31 @@
                     <div class="card-body pt-3 p-3 text-center">
                       <h6 class="text-center mb-0">Screen 1</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher41">#000000</span><br>
-                      <span class="text-xs" id="Crusher42">#000000</span>
+                      <span class="text-xs" id="Screen11">#000000</span><br>
+                      <span class="text-xs" id="Screen12">#000000</span>
                     </div>
                   </div>
                 </td>
                 <td></td>
               </tr>
 
-              <tr>
+              <tr id="s1_row2" class="s1_row">
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
               </tr>
 
-              <tr>
+              <tr id="s1_row3" class="s1_row">
                 <td><div class="triangle_up"></div><span id="screen1_output">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p" id="Bin_PrimaryCrusher1"></p></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="2">0 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s1-s2">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
               
-              <tr>
+              <tr id="s2_row1" class="s2_row">
                 <td></td>
                 <td></td>
                 <td rowspan="2"> 
@@ -370,26 +370,122 @@
                     <div class="card-body pt-3 p-3 text-center">
                       <h6 class="text-center mb-0">Screen 2</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="Crusher51">#000000</span><br>
-                      <span class="text-xs" id="Crusher52">#000000</span>
+                      <span class="text-xs" id="Screen21">#000000</span><br>
+                      <span class="text-xs" id="Screen22">#000000</span>
                     </div>
                   </div>
                 </td>
                 <td></td>
               </tr>
 
-              <tr>
+              <tr id="s2_row2" class="s2_row">
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
               </tr>
 
-              <tr>
-                <td></td>
-                <td></td>
+              <tr id="s2_row3" class="s2_row">
+                <td><div class="triangle_up"></div><span id="screen2_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p">0 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                </td>
+                <td></td>
+              </tr>
+              
+              <tr id="s3_row1" class="s3_row">
+                <td></td>
+                <td></td>
+                <td rowspan="2"> 
+                  <div class="card" onclick="oo('Screen 3');">
+                    <div class="card-body pt-3 p-3 text-center">
+                      <h6 class="text-center mb-0">Screen 3</h6>
+                      <hr class="horizontal dark my-2">
+                      <span class="text-xs" id="Screen31">#000000</span><br>
+                      <span class="text-xs" id="Screen32">#000000</span>
+                    </div>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr id="s3_row2" class="s3_row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr id="s3_row3" class="s3_row">
+                <td><div class="triangle_up"></div><span id="screen3_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td class="arrow"> 
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                </td>
+                <td></td>
+              </tr>
+              
+              <tr id="s4_row1" class="s4_row">
+                <td></td>
+                <td></td>
+                <td rowspan="2"> 
+                  <div class="card" onclick="oo('Screen 4');">
+                    <div class="card-body pt-3 p-3 text-center">
+                      <h6 class="text-center mb-0">Screen 4</h6>
+                      <hr class="horizontal dark my-2">
+                      <span class="text-xs" id="Screen41">#000000</span><br>
+                      <span class="text-xs" id="Screen42">#000000</span>
+                    </div>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr id="s4_row2" class="s4_row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr id="s4_row3" class="s4_row">
+                <td><div class="triangle_up"></div><span id="screen4_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td class="arrow"> 
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                </td>
+                <td></td>
+              </tr>
+              
+              <tr id="s5_row1" class="s5_row">
+                <td></td>
+                <td></td>
+                <td rowspan="2" class="s1_row"> 
+                  <div class="card" onclick="oo('Screen 5');">
+                    <div class="card-body pt-3 p-3 text-center">
+                      <h6 class="text-center mb-0">Screen 5</h6>
+                      <hr class="horizontal dark my-2">
+                      <span class="text-xs" id="Screen51">#000000</span><br>
+                      <span class="text-xs" id="Screen52">#000000</span>
+                    </div>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr id="s5_row2" class="s5_row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr id="s5_row3" class="s5_row">
+                <td><div class="triangle_up"></div><span id="screen5_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td class="arrow"> 
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -398,11 +494,10 @@
                 <td></td>
                 <td></td>
                 <td rowspan="2"> 
-                  <div class="card" onclick="oo('4th Crusher');">
+                  <div class="card" onclick="oo('Output');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">End</h6>
+                      <h6 class="text-center mb-0">Output</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs">Output:</span><br>
                       <span class="text-xs">< 5mm</span>
                     </div>
                   </div>
