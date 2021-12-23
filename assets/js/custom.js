@@ -166,6 +166,9 @@ function create_diagram(){
 
         document.getElementById("screen"+(i+1)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" t/h";
     }
+
+    var row_count = rows.length;
+    document.getElementById("output_value").innerHTML = "< "+rows[row_count-1][0]+"mm";
     
     document.getElementById("chart-input2").style.display = "none";
     document.getElementById("chart-body").style.display = "block";
@@ -178,7 +181,7 @@ function oo(type){
     modal.style.display = "block";
     var span = document.getElementsByClassName("close")[0];
     crusher_type = type.replace(/\s/g,'');
-    alert(crusher_type);
+    
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
