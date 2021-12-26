@@ -30,9 +30,6 @@
   border: 1px solid black;
 }
 
-.s1_row {
-  display: none;
-}
 .s2_row {
   display: none;
 }
@@ -43,6 +40,9 @@
   display: none;
 }
 .s5_row {
+  display: none;
+}
+.s6_row {
   display: none;
 }
 

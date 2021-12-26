@@ -15,6 +15,246 @@ if(isset($_GET['efficiency'])){
     $conn = null;
     exit;
 }
+
+if(isset($_GET['sieve'])){
+    require_once 'db_con.php';
+    try {
+        $s1 = 0;
+        $s2 = 0;
+        $s3 = 0;
+        $s4 = 0;
+        $s5 = 0;
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if(isset($_GET['input_1_1']) && ($_GET['input_1_1'] != "")){
+            $input_1_1 = $_GET['input_1_1'];
+            $input_1_2 = $_GET['input_1_2'];
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_1_1." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_1 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_1_1." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_1_1." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_1_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_1_2." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_2 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_1_2." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_1_2." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_2 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_1_2-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            $s1 = round($s_1_2,2)-round($s_1_1,2);
+        }
+
+        if(isset($_GET['input_2_1']) && ($_GET['input_2_1'] != "")){
+            $input_2_1 = $_GET['input_2_1'];
+            $input_2_2 = $_GET['input_2_2'];
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_2_1." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_1 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_2_1." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_2_1." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_2_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_2_2." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_2 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_2_2." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_2_2." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_2 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_2_2-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            $s2 = round($s_1_2,2)-round($s_1_1,2);
+        }
+
+        if(isset($_GET['input_3_1']) && ($_GET['input_3_1'] != "")){
+            $input_3_1 = $_GET['input_3_1'];
+            $input_3_2 = $_GET['input_3_2'];
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_3_1." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_1 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_3_1." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_3_1." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_3_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_3_2." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_2 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_3_2." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_3_2." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_2 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_3_2-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            $s3 = round($s_1_2,2)-round($s_1_1,2);
+        }
+
+        if(isset($_GET['input_4_1']) && ($_GET['input_4_1'] != "")){
+            $input_4_1 = $_GET['input_4_1'];
+            $input_4_2 = $_GET['input_4_2'];
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_4_1." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_1 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_4_1." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_4_1." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_4_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_4_2." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_2 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_4_2." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_4_2." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_2 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_4_2-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            $s4 = round($s_1_2,2)-round($s_1_1,2);
+        }
+
+        if(isset($_GET['input_5_1']) && ($_GET['input_5_1'] != "")){
+            $input_5_1 = $_GET['input_5_1'];
+            $input_5_2 = $_GET['input_5_2'];
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_5_1." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_1 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_5_1." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_5_1." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_5_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            
+            $sql = "SELECT * FROM sieve_percentage WHERE size=".$input_5_2." LIMIT 1;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($results) > 0){
+                $s_1_2 = $results[0]['percentage'];
+            } else {
+                $sql1 = "SELECT * FROM sieve_percentage WHERE size<=".$input_5_2." LIMIT 1;";
+                $sql2 = "SELECT * FROM sieve_percentage WHERE size>".$input_5_2." ORDER BY size ASC LIMIT 1;";
+                $stmt = $conn->prepare($sql1);
+                $stmt->execute();
+                $results1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare($sql2);
+                $stmt->execute();
+                $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+                $s_1_2 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_5_2-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
+            }
+            $s5 = round($s_1_2,2)-round($s_1_1,2);
+        }
+
+        echo '{"s1":"'.$s1.'","s2":"'.$s2.'","s3":"'.$s3.'","s4":"'.$s4.'","s5":"'.$s5.'"}';
+    } catch(PDOException $e) {
+        echo "failed : " . $e->getMessage();
+    }
+    $conn = null;
+    exit;
+}
+
+
 /*
     $PrimaryCrusher = array(
             "Model"=>array('', ''),
@@ -340,4 +580,9 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
     $conn = null;
 
     */
+
+    
+function calculateSievePercentage(){
+
+}
 ?>

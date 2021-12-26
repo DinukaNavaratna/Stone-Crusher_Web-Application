@@ -35,7 +35,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Dashboard </title>
@@ -354,8 +354,8 @@
               </tr>
 
               <tr id="s1_row3" class="s1_row">
-                <td><div class="triangle_up"></div><span id="screen1_output">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s1-s2">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
@@ -421,7 +421,7 @@
                 <td><div class="triangle_up"></div><span id="screen3_output">0 t/h</span></td>
                 <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s3-s4">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -453,7 +453,7 @@
                 <td><div class="triangle_up"></div><span id="screen4_output">0 t/h</span></td>
                 <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s4-s5">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -461,7 +461,7 @@
               <tr id="s5_row1" class="s5_row">
                 <td></td>
                 <td></td>
-                <td rowspan="2" class="s1_row"> 
+                <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 5');">
                     <div class="card-body pt-3 p-3 text-center">
                       <h6 class="text-center mb-0">Screen 5</h6>
@@ -485,7 +485,39 @@
                 <td><div class="triangle_up"></div><span id="screen5_output">0 t/h</span></td>
                 <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td class="arrow"> 
-                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s2-s3">0 t/h</p><p class="arrow-body">&#8595;</p>
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s5-s6">0 t/h</p><p class="arrow-body">&#8595;</p>
+                </td>
+                <td></td>
+              </tr>
+              
+              <tr id="s6_row1" class="s6_row">
+                <td></td>
+                <td></td>
+                <td rowspan="2"> 
+                  <div class="card" onclick="oo('Screen 6');">
+                    <div class="card-body pt-3 p-3 text-center">
+                      <h6 class="text-center mb-0">Screen 6</h6>
+                      <hr class="horizontal dark my-2">
+                      <span class="text-xs" id="Screen61">#000000</span><br>
+                      <span class="text-xs" id="Screen62">#000000</span>
+                    </div>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr id="s6_row2" class="s6_row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr id="s6_row3" class="s6_row">
+                <td><div class="triangle_up"></div><span id="screen6_output">0 t/h</span></td>
+                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td class="arrow"> 
+                  <p class="arrow-body">&#124;</p><p class="arrow-body-p" id="s6-output">0 t/h</p><p class="arrow-body">&#8595;</p>
                 </td>
                 <td></td>
               </tr>
@@ -496,9 +528,9 @@
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Output');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Output</h6>
+                      <h6 class="text-center mb-0" id="output_title">Output</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="output_value">< 0mm</span>
+                      <span class="text-xs" id="output_value">< 0 t/h</span>
                     </div>
                   </div>
                 </td>
@@ -526,7 +558,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  <!--<script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>-->
 
 </body>
 

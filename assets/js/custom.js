@@ -91,9 +91,9 @@ function create_diagram(){
     document.getElementById('feeder-jaw').innerHTML = required_input_capacity+" t/h";
     document.getElementById('jaw-cone').innerHTML = required_input_capacity+" t/h";
     document.getElementById('hopper_output').innerHTML = String(required_input_capacity*2)+" t/h";
-    document.getElementById('s1-s2').innerHTML = required_input_capacity+" t/h";
+    document.getElementById("s1-s2").innerHTML = required_input_capacity+" t/h";
     var a = rows[0][1];
-    console.log(a);
+    //console.log(a);
     var ad = a/((a*0.94)-(7*0.342));
     var efficiency = 0;
 
@@ -158,17 +158,60 @@ function create_diagram(){
         }
     });
 
+    try{
+        var input_1_1 = rows[0][0];
+        var input_1_2 = rows[0][1];
+        var input_2_1 = rows[1][0];
+        var input_2_2 = rows[1][1];
+        var input_3_1 = rows[2][0];
+        var input_3_2 = rows[2][1];
+        var input_4_1 = rows[3][0];
+        var input_4_2 = rows[3][1];
+        var input_5_1 = rows[4][0];
+        var input_5_2 = rows[4][1];
+    } catch (ex) {
+    }
+
+    $.ajax({
+        url:"http://localhost/Stone%20Crusher/assets/php/functions.php",
+        type: "GET",
+        data: {"sieve": "true", "input_1_1": input_1_1, "input_1_2": input_1_2, "input_2_1": input_2_1, "input_2_2": input_2_2, "input_3_1": input_3_1, "input_3_2": input_3_2, "input_4_1": input_4_1, "input_4_2": input_4_2, "input_5_1": input_5_1, "input_5_2": input_5_2},
+        success:function(response){
+            //console.log("Sieve \n"+response);
+            if(response.includes("failed")){
+                alert("Failed");
+            } else {
+                obj = JSON.parse(response);
+                s1_output = Math.round((required_input_capacity*obj.s1/100)*100)/100;
+                s2_output = Math.round((required_input_capacity*obj.s2/100)*100)/100;
+                s3_output = Math.round((required_input_capacity*obj.s3/100)*100)/100;
+                s4_output = Math.round((required_input_capacity*obj.s4/100)*100)/100;
+                s5_output = Math.round((required_input_capacity*obj.s5/100)*100)/100;
+                document.getElementById("s2-s3").innerHTML = s1_output+" t/h";
+                document.getElementById("s3-s4").innerHTML = s2_output+" t/h";
+                document.getElementById("s4-s5").innerHTML = s3_output+" t/h";
+                document.getElementById("s5-s6").innerHTML = s4_output+" t/h";
+                document.getElementById("s6-output").innerHTML = s5_output+" t/h";
+                
+                document.getElementById("output_value").innerHTML = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100+" t/h";
+            }
+        },
+        error: function (jqXHR, exception) {
+            alert("Error");
+        }
+    });
+
 
     for (let i = 0; i < rows.length; i++) {
-        document.getElementById("s"+(i+1)+"_row1").classList.remove("s"+(i+1)+"_row");
-        document.getElementById("s"+(i+1)+"_row2").classList.remove("s"+(i+1)+"_row");
-        document.getElementById("s"+(i+1)+"_row3").classList.remove("s"+(i+1)+"_row");
+        document.getElementById("s"+(i+2)+"_row1").classList.remove("s"+(i+2)+"_row");
+        document.getElementById("s"+(i+2)+"_row2").classList.remove("s"+(i+2)+"_row");
+        document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
 
-        document.getElementById("screen"+(i+1)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" t/h";
+        document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" t/h";
     }
 
     var row_count = rows.length;
-    document.getElementById("output_value").innerHTML = "< "+rows[row_count-1][0]+"mm";
+    document.getElementById("output_title").innerHTML = "Output < "+rows[row_count-1][0]+"mm";
     
     document.getElementById("chart-input2").style.display = "none";
     document.getElementById("chart-body").style.display = "block";
