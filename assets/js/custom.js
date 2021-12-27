@@ -190,7 +190,7 @@ function create_diagram(){
                 s4_output = Math.round((required_input_capacity*obj.s4/100)*100)/100;
                 s5_output = Math.round((required_input_capacity*obj.s5/100)*100)/100;
 
-                if(s1_output == 0){
+                /*if(s1_output == 0){
                     s1_output = Math.round((required_input_capacity-s1_output)*100)/100;
                 } else if(s2_output == 0){
                     s2_output = Math.round((required_input_capacity-(s1_output+s2_output))*100)/100;
@@ -200,7 +200,7 @@ function create_diagram(){
                     s4_output = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output))*100)/100;
                 } else if(s5_output == 0){
                     s5_output = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output+s5_output))*100)/100;
-                }
+                }*/
 
                 document.getElementById("s2-s3").innerHTML = s1_output+" t/h";
                 document.getElementById("s3-s4").innerHTML = s2_output+" t/h";
@@ -208,7 +208,9 @@ function create_diagram(){
                 document.getElementById("s5-s6").innerHTML = s4_output+" t/h";
                 document.getElementById("s6-output").innerHTML = s5_output+" t/h";
 
-                //document.getElementById("output_value").innerHTML = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100+" t/h";
+                document.getElementById("output_perc").innerHTML = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output+s5_output))*100)/100+" t/h";
+
+                document.getElementById("output_size").innerHTML = rows[(rows.length)-1][0]+" - "+rows[(rows.length)-1][1]+" mm";
             }
         },
         error: function (jqXHR, exception) {
@@ -218,9 +220,11 @@ function create_diagram(){
 
 
     for (let i = 0; i < rows.length; i++) {
-        document.getElementById("s"+(i+2)+"_row1").classList.remove("s"+(i+2)+"_row");
-        document.getElementById("s"+(i+2)+"_row2").classList.remove("s"+(i+2)+"_row");
-        document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
+        if(rows.length != i+1){
+            document.getElementById("s"+(i+2)+"_row1").classList.remove("s"+(i+2)+"_row");
+            document.getElementById("s"+(i+2)+"_row2").classList.remove("s"+(i+2)+"_row");
+            document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
+        }
 
         document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" mm";
     }

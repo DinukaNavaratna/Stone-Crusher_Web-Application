@@ -364,8 +364,8 @@
               </tr>
               
               <tr id="s2_row1" class="s2_row">
-                <td></td>
-                <td></td>
+                <td rowspan="2"><span id="screen2_output">0 mm</span><br><span id="s2-s3">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 2');">
                     <div class="card-body pt-3 p-3 text-center">
@@ -387,8 +387,8 @@
               </tr>
 
               <tr id="s2_row3" class="s2_row">
-                <td><div class="triangle_up"></div><span id="screen2_output">0 mm</span><br><span id="s2-s3">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#8595;</p>
                 </td>
@@ -396,8 +396,8 @@
               </tr>
               
               <tr id="s3_row1" class="s3_row">
-                <td></td>
-                <td></td>
+                <td rowspan="2"></div><span id="screen3_output">0 mm</span><br><span id="s3-s4">0 t/h</span><div class="triangle_up"></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 3');">
                     <div class="card-body pt-3 p-3 text-center">
@@ -419,8 +419,8 @@
               </tr>
 
               <tr id="s3_row3" class="s3_row">
-                <td><div class="triangle_up"></div><span id="screen3_output">0 mm</span><br><span id="s3-s4">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#8595;</p>
                 </td>
@@ -428,8 +428,8 @@
               </tr>
               
               <tr id="s4_row1" class="s4_row">
-                <td></td>
-                <td></td>
+                <td rowspan="2"><span id="screen4_output">0 mm</span><br><span id="s4-s5">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 4');">
                     <div class="card-body pt-3 p-3 text-center">
@@ -451,8 +451,8 @@
               </tr>
 
               <tr id="s4_row3" class="s4_row">
-                <td><div class="triangle_up"></div><span id="screen4_output">0 mm</span><br><span id="s4-s5">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#8595;</p>
                 </td>
@@ -460,8 +460,8 @@
               </tr>
               
               <tr id="s5_row1" class="s5_row">
-                <td></td>
-                <td></td>
+                <td rowspan="2"><span id="screen5_output">0 mm</span><br><span id="s5-s6">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 5');">
                     <div class="card-body pt-3 p-3 text-center">
@@ -483,8 +483,8 @@
               </tr>
 
               <tr id="s5_row3" class="s5_row">
-                <td><div class="triangle_up"></div><span id="screen5_output">0 mm</span><br><span id="s5-s6">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#8595;</p>
                 </td>
@@ -492,8 +492,8 @@
               </tr>
               
               <tr id="s6_row1" class="s6_row">
-                <td></td>
-                <td></td>
+                <td rowspan="2"><span id="screen6_output">0 mm</span><br><span id="s6-output">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 6');">
                     <div class="card-body pt-3 p-3 text-center">
@@ -515,8 +515,8 @@
               </tr>
 
               <tr id="s6_row3" class="s6_row">
-                <td><div class="triangle_up"></div><span id="screen6_output">0 mm</span><br><span id="s6-output">0 t/h</span></td>
-                <td><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td></td>
+                <td></td>
                 <td class="arrow"> 
                   <p class="arrow-body">&#8595;</p>
                 </td>
@@ -524,9 +524,7 @@
               </tr>
               
               <tr>
-                <td></td>
-                <td></td>
-                <td rowspan="2"> 
+                <td rowspan="2" colspan="2"> 
                   <div class="card" onclick="oo('Output');">
                     <div class="card-body pt-3 p-3 text-center">
                       <h6 class="text-center mb-0" id="output_title">Special Output</h6>
@@ -535,6 +533,7 @@
                     </div>
                   </div>
                 </td>
+                <td rowspan="2"><div class="triangle_up"></div><span id="output_size">0 mm</span><br><span id="output_perc">0 t/h</span></td>
                 <td></td>
               </tr>
 
