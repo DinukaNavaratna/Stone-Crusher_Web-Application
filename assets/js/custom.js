@@ -85,7 +85,7 @@ function create_diagram(){
     }
 
     output_per_hour = monthly_output_capacity/(working_days_per_month*shifts_per_day*hours_per_shift);
-    output_per_hour = Math.ceil(output_per_hour/5)*5;
+    output_per_hour = Math.round(output_per_hour*100)/100;
     required_input_capacity = 100/95*output_per_hour;
     required_input_capacity = Math.round(required_input_capacity * 100) / 100;
     document.getElementById('feeder-jaw').innerHTML = required_input_capacity+" t/h";
@@ -107,7 +107,9 @@ function create_diagram(){
                 alert("Efficiency Calculation Failed");
             } else {
                 efficiency = response;
+                console.log("Screen efficiency: "+efficiency);
                 var screen1_return = required_input_capacity*((100-efficiency)/100);
+                console.log("Screen 1 Return: "+screen1_return)
                 screen1_return = Math.round(screen1_return * 100) / 100;
                 document.getElementById("cone-s1").innerHTML = (required_input_capacity+screen1_return)+" t/h";
                 document.getElementById("screen1_return").innerHTML = screen1_return+" t/h";
@@ -187,13 +189,26 @@ function create_diagram(){
                 s3_output = Math.round((required_input_capacity*obj.s3/100)*100)/100;
                 s4_output = Math.round((required_input_capacity*obj.s4/100)*100)/100;
                 s5_output = Math.round((required_input_capacity*obj.s5/100)*100)/100;
+
+                if(s1_output == 0){
+                    s1_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output)*100)/100;
+                } else if(s2_output == 0){
+                    s2_output = Math.round((required_input_capacity-s1_output+s2_output)*100)/100;
+                } else if(s3_output == 0){
+                    s3_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output)*100)/100;
+                } else if(s4_output == 0){
+                    s4_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output)*100)/100;
+                } else if(s5_output == 0){
+                    s5_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100;
+                }
+
                 document.getElementById("s2-s3").innerHTML = s1_output+" t/h";
                 document.getElementById("s3-s4").innerHTML = s2_output+" t/h";
                 document.getElementById("s4-s5").innerHTML = s3_output+" t/h";
                 document.getElementById("s5-s6").innerHTML = s4_output+" t/h";
                 document.getElementById("s6-output").innerHTML = s5_output+" t/h";
-                
-                document.getElementById("output_value").innerHTML = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100+" t/h";
+
+                //document.getElementById("output_value").innerHTML = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100+" t/h";
             }
         },
         error: function (jqXHR, exception) {
@@ -207,11 +222,11 @@ function create_diagram(){
         document.getElementById("s"+(i+2)+"_row2").classList.remove("s"+(i+2)+"_row");
         document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
 
-        document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" t/h";
+        document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" mm";
     }
 
     var row_count = rows.length;
-    document.getElementById("output_title").innerHTML = "Output < "+rows[row_count-1][0]+"mm";
+    //document.getElementById("output_title").innerHTML = "Output < "+rows[row_count-1][0]+" mm";
     
     document.getElementById("chart-input2").style.display = "none";
     document.getElementById("chart-body").style.display = "block";
@@ -238,6 +253,11 @@ function oo(type){
     }
 
     document.getElementById("modal-topic").innerHTML = type;
+    if (type == "Cone Crusher" || type == "Jaw Crusher"){
+        document.getElementById("model_btns").style.display = "initial";
+    } else {
+        document.getElementById("model_btns").style.display = "none";
+    }
 
     var table_body_content = "<tr><td></td><th>Low Budget</th><th>High Budget</th></tr>";
     for(var i in crushers[crusher_type]){

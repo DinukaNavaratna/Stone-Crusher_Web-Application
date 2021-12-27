@@ -26,7 +26,7 @@ if(isset($_GET['sieve'])){
         $s5 = 0;
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if(isset($_GET['input_1_1']) && ($_GET['input_1_1'] != "")){
+        if(isset($_GET['input_1_1']) && ($_GET['input_1_1'] != "") && ($_GET['input_1_1'] != 0)){
             $input_1_1 = $_GET['input_1_1'];
             $input_1_2 = $_GET['input_1_2'];
             
@@ -70,7 +70,7 @@ if(isset($_GET['sieve'])){
             $s1 = round($s_1_2,2)-round($s_1_1,2);
         }
 
-        if(isset($_GET['input_2_1']) && ($_GET['input_2_1'] != "")){
+        if(isset($_GET['input_2_1']) && ($_GET['input_2_1'] != "") && ($_GET['input_2_1'] != 0)){
             $input_2_1 = $_GET['input_2_1'];
             $input_2_2 = $_GET['input_2_2'];
             
@@ -114,7 +114,7 @@ if(isset($_GET['sieve'])){
             $s2 = round($s_1_2,2)-round($s_1_1,2);
         }
 
-        if(isset($_GET['input_3_1']) && ($_GET['input_3_1'] != "")){
+        if(isset($_GET['input_3_1']) && ($_GET['input_3_1'] != "") && ($_GET['input_3_1'] != 0)){
             $input_3_1 = $_GET['input_3_1'];
             $input_3_2 = $_GET['input_3_2'];
             
@@ -158,7 +158,7 @@ if(isset($_GET['sieve'])){
             $s3 = round($s_1_2,2)-round($s_1_1,2);
         }
 
-        if(isset($_GET['input_4_1']) && ($_GET['input_4_1'] != "")){
+        if(isset($_GET['input_4_1']) && ($_GET['input_4_1'] != "") && ($_GET['input_4_1'] != 0)){
             $input_4_1 = $_GET['input_4_1'];
             $input_4_2 = $_GET['input_4_2'];
             
@@ -202,7 +202,7 @@ if(isset($_GET['sieve'])){
             $s4 = round($s_1_2,2)-round($s_1_1,2);
         }
 
-        if(isset($_GET['input_5_1']) && ($_GET['input_5_1'] != "")){
+        if(isset($_GET['input_5_1']) && ($_GET['input_5_1'] != "") && ($_GET['input_5_1'] != 0)){
             $input_5_1 = $_GET['input_5_1'];
             $input_5_2 = $_GET['input_5_2'];
             
