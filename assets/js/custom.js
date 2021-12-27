@@ -191,15 +191,15 @@ function create_diagram(){
                 s5_output = Math.round((required_input_capacity*obj.s5/100)*100)/100;
 
                 if(s1_output == 0){
-                    s1_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output)*100)/100;
+                    s1_output = Math.round((required_input_capacity-s1_output)*100)/100;
                 } else if(s2_output == 0){
-                    s2_output = Math.round((required_input_capacity-s1_output+s2_output)*100)/100;
+                    s2_output = Math.round((required_input_capacity-(s1_output+s2_output))*100)/100;
                 } else if(s3_output == 0){
-                    s3_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output)*100)/100;
+                    s3_output = Math.round((required_input_capacity-(s1_output+s2_output+s3_output))*100)/100;
                 } else if(s4_output == 0){
-                    s4_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output)*100)/100;
+                    s4_output = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output))*100)/100;
                 } else if(s5_output == 0){
-                    s5_output = Math.round((required_input_capacity-s1_output+s2_output+s3_output+s4_output+s5_output)*100)/100;
+                    s5_output = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output+s5_output))*100)/100;
                 }
 
                 document.getElementById("s2-s3").innerHTML = s1_output+" t/h";
