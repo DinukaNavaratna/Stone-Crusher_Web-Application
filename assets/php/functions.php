@@ -286,30 +286,116 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
     try {        
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //Feeder
-        $sql0 = "SELECT * FROM `feeder` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity >= ".$_GET['capacity']." ;";
+        $sql0 = "SELECT * FROM `feeder` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity >= ".$_GET['capacity']." LIMIT 1;;";
         $stmt0 = $conn->prepare($sql0);
         $stmt0->execute();
         $results0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
         
         //Jaw Crusher
-        $sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        //$sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        $sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
         $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-        $sql2 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        
+        //$sql2 = "SELECT * FROM `jaw_crushers_high` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
+        $sql2 = "SELECT * FROM `jaw_crushers_high` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
         $stmt2 = $conn->prepare($sql2);
         $stmt2->execute();
         $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
         
         //Cone Crusher
-        $sql3 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+        //$sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+        $sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
         $stmt3 = $conn->prepare($sql3);
         $stmt3->execute();
         $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
-        $sql4 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+
+        //$sql4 = "SELECT * FROM `cone_crushers_high` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
+        $sql4 = "SELECT * FROM `cone_crushers_high` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
         $stmt4 = $conn->prepare($sql4);
         $stmt4->execute();
         $results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Screen1
+        $sql5 = "SELECT * FROM `screens_low` WHERE max_feed_size >= ".$_GET['screen1']." AND capacity_max >= ".$_GET['screen1']." LIMIT 1;";
+        $stmt5 = $conn->prepare($sql5);
+        $stmt5->execute();
+        $results5 = $stmt5->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql6 = "SELECT * FROM `screens_high` WHERE aperture_max >= ".$_GET['screen1']." AND capacity_max >= ".$_GET['screen1']."  LIMIT 1;";
+        $stmt6 = $conn->prepare($sql6);
+        $stmt6->execute();
+        $results6 = $stmt6->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Screen2
+        $sql7 = "SELECT * FROM `screens_low` WHERE max_feed_size >= ".$_GET['screen2']." AND capacity_max >= ".$_GET['screen2']." LIMIT 1;";
+        $stmt7 = $conn->prepare($sql7);
+        $stmt7->execute();
+        $results7 = $stmt7->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql8 = "SELECT * FROM `screens_high` WHERE aperture_max >= ".$_GET['screen2']." AND capacity_max >= ".$_GET['screen2']."  LIMIT 1;";
+        $stmt8 = $conn->prepare($sql8);
+        $stmt8->execute();
+        $results8 = $stmt8->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Screen3
+        $sql9 = "SELECT * FROM `screens_low` WHERE max_feed_size >= ".$_GET['screen3']." AND capacity_max >= ".$_GET['screen3']." LIMIT 1;";
+        $stmt9 = $conn->prepare($sql9);
+        $stmt9->execute();
+        $results9 = $stmt9->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql10 = "SELECT * FROM `screens_high` WHERE aperture_max >= ".$_GET['screen3']." AND capacity_max >= ".$_GET['screen3']."  LIMIT 1;";
+        $stmt10 = $conn->prepare($sql10);
+        $stmt10->execute();
+        $results10 = $stmt10->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Screen4
+        $sql11 = "SELECT * FROM `screens_low` WHERE max_feed_size >= ".$_GET['screen4']." AND capacity_max >= ".$_GET['screen4']." LIMIT 1;";
+        $stmt11 = $conn->prepare($sql11);
+        $stmt11->execute();
+        $results11 = $stmt11->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql12 = "SELECT * FROM `screens_high` WHERE aperture_max >= ".$_GET['screen4']." AND capacity_max >= ".$_GET['screen4']."  LIMIT 1;";
+        $stmt12 = $conn->prepare($sql12);
+        $stmt12->execute();
+        $results12 = $stmt12->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Screen5
+        $sql13 = "SELECT * FROM `screens_low` WHERE max_feed_size >= ".$_GET['screen5']." AND capacity_max >= ".$_GET['screen5']." LIMIT 1;";
+        $stmt13 = $conn->prepare($sql13);
+        $stmt13->execute();
+        $results13 = $stmt13->fetchAll(PDO::FETCH_ASSOC);
+
+        $sql14 = "SELECT * FROM `screens_high` WHERE aperture_max >= ".$_GET['screen5']." AND capacity_max >= ".$_GET['screen5']."  LIMIT 1;";
+        $stmt14 = $conn->prepare($sql14);
+        $stmt14->execute();
+        $results14 = $stmt14->fetchAll(PDO::FETCH_ASSOC);
+
+/*
+        echo($sql5."\n");
+        print_r($results5);
+        echo($sql6."\n");
+        print_r($results6);
+        echo($sql7."\n");
+        print_r($results7);
+        echo($sql8."\n");
+        print_r($results8);
+        echo($sql9."\n");
+        print_r($results9);
+        echo($sql10."\n");
+        print_r($results10);
+        echo($sql11."\n");
+        print_r($results11);
+        echo($sql12."\n");
+        print_r($results12);
+        echo($sql13."\n");
+        print_r($results13);
+        echo($sql14."\n");
+        print_r($results14);
+        echo("\n\n\n\n\n");
+*/
+
 
         $crushers = '{"crushers": {'.
                         '"Hopper": {' .
@@ -345,16 +431,70 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
                             '"Adjustable Range Of Output Size (mm)":["'.$results3[0]['discharge_size_min'].' - '.$results3[0]['discharge_size_max'].'",  "'.$results4[0]['discharge_size_min'].' - '.$results4[0]['discharge_size_max'].'"],' .
                             '"Weight (t)":["'.$results3[0]['weight'].'",  "'.$results4[0]['weight'].'"]' .
                         '},' .
-                        '"Crusher3": {' .
-                            '"Model":["B400 x 600", "B400 x 800"],' .
-                            '"Feed Opening Size (mm)":["100 x 600",  "200 x 600"],' .
-                            '"Max Feeding Size (mm)":["250",  "300"],' .
-                            '"Min Capacity (t/h)":["5",  "10"],' .
-                            '"Max Capacity (t/h)":["20",  "30"],' .
-                            '"rotate_speed":["15",  "15"],' .
-                            '"Motor & Power (kw)":["10",  "10"],' .
-                            '"Adjustable Range Of Output Size (mm)":["5-10",  "10-20"],' .
-                            '"Weight (t)":["2.9",  "3.5"]' .
+                        '"Screen1": {' .
+                            '"Model":["'.$results5[0]['model'].'", "'.$results6[0]['model'].'"],' .
+                            '"Screen Size (mm)":["'.$results5[0]['screen_size_1'].' - '.$results5[0]['screen_size_2'].'",  "'.$results6[0]['screen_size_1'].' - '.$results6[0]['screen_size_2'].'"],' .
+                            '"Layers":["'.$results5[0]['layers'].'",  "'.$results6[0]['layers'].'"],' .
+                            '"Screen Aperture Min (mm)":["'.$results5[0]['aperture_min'].'",  "'.$results6[0]['aperture_min'].'"],' .
+                            '"Screen Aperture Max (mm)":["'.$results5[0]['aperture_max'].'",  "'.$results6[0]['aperture_max'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results5[0]['max_feed_size'].'",  "'.$results6[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results5[0]['capacity_min'].'",  "'.$results6[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results5[0]['capacity_max'].'",  "'.$results6[0]['capacity_max'].'"],' .
+                            '"Power (Kw)":["'.$results5[0]['power'].'",  "'.$results6[0]['power'].'"],' .
+                            '"Vibrating Frequency(r/min)":["'.$results5[0]['vibrating_frequency'].'",  "'.$results6[0]['vibrating_frequency'].'"],' .
+                            '"Amplitude (mm)":["'.$results5[0]['amptitude'].'",  "'.$results6[0]['amptitude'].'"]' .
+                        '},' .
+                        '"Screen2": {' .
+                            '"Model":["'.$results7[0]['model'].'", "'.$results8[0]['model'].'"],' .
+                            '"Screen Size (mm)":["'.$results7[0]['screen_size_1'].' - '.$results7[0]['screen_size_2'].'",  "'.$results8[0]['screen_size_1'].' - '.$results8[0]['screen_size_2'].'"],' .
+                            '"Layers":["'.$results7[0]['layers'].'",  "'.$results8[0]['layers'].'"],' .
+                            '"Screen Aperture Min (mm)":["'.$results7[0]['aperture_min'].'",  "'.$results8[0]['aperture_min'].'"],' .
+                            '"Screen Aperture Max (mm)":["'.$results7[0]['aperture_max'].'",  "'.$results8[0]['aperture_max'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results7[0]['max_feed_size'].'",  "'.$results8[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results7[0]['capacity_min'].'",  "'.$results8[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results7[0]['capacity_max'].'",  "'.$results8[0]['capacity_max'].'"],' .
+                            '"Power (Kw)":["'.$results7[0]['power'].'",  "'.$results8[0]['power'].'"],' .
+                            '"Vibrating Frequency(r/min)":["'.$results7[0]['vibrating_frequency'].'",  "'.$results8[0]['vibrating_frequency'].'"],' .
+                            '"Amplitude (mm)":["'.$results7[0]['amptitude'].'",  "'.$results8[0]['amptitude'].'"]' .
+                        '},' .
+                        '"Screen3": {' .
+                            '"Model":["'.$results9[0]['model'].'", "'.$results10[0]['model'].'"],' .
+                            '"Screen Size (mm)":["'.$results9[0]['screen_size_1'].' - '.$results9[0]['screen_size_2'].'",  "'.$results10[0]['screen_size_1'].' - '.$results10[0]['screen_size_2'].'"],' .
+                            '"Layers":["'.$results9[0]['layers'].'",  "'.$results10[0]['layers'].'"],' .
+                            '"Screen Aperture Min (mm)":["'.$results9[0]['aperture_min'].'",  "'.$results10[0]['aperture_min'].'"],' .
+                            '"Screen Aperture Max (mm)":["'.$results9[0]['aperture_max'].'",  "'.$results10[0]['aperture_max'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results9[0]['max_feed_size'].'",  "'.$results10[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results9[0]['capacity_min'].'",  "'.$results10[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results9[0]['capacity_max'].'",  "'.$results10[0]['capacity_max'].'"],' .
+                            '"Power (Kw)":["'.$results9[0]['power'].'",  "'.$results10[0]['power'].'"],' .
+                            '"Vibrating Frequency(r/min)":["'.$results9[0]['vibrating_frequency'].'",  "'.$results10[0]['vibrating_frequency'].'"],' .
+                            '"Amplitude (mm)":["'.$results9[0]['amptitude'].'",  "'.$results10[0]['amptitude'].'"]' .
+                        '},' .
+                        '"Screen4": {' .
+                            '"Model":["'.$results11[0]['model'].'", "'.$results12[0]['model'].'"],' .
+                            '"Screen Size (mm)":["'.$results11[0]['screen_size_1'].' - '.$results11[0]['screen_size_2'].'",  "'.$results12[0]['screen_size_1'].' - '.$results12[0]['screen_size_2'].'"],' .
+                            '"Layers":["'.$results11[0]['layers'].'",  "'.$results12[0]['layers'].'"],' .
+                            '"Screen Aperture Min (mm)":["'.$results11[0]['aperture_min'].'",  "'.$results12[0]['aperture_min'].'"],' .
+                            '"Screen Aperture Max (mm)":["'.$results11[0]['aperture_max'].'",  "'.$results12[0]['aperture_max'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results11[0]['max_feed_size'].'",  "'.$results12[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results11[0]['capacity_min'].'",  "'.$results12[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results11[0]['capacity_max'].'",  "'.$results12[0]['capacity_max'].'"],' .
+                            '"Power (Kw)":["'.$results11[0]['power'].'",  "'.$results12[0]['power'].'"],' .
+                            '"Vibrating Frequency(r/min)":["'.$results11[0]['vibrating_frequency'].'",  "'.$results12[0]['vibrating_frequency'].'"],' .
+                            '"Amplitude (mm)":["'.$results11[0]['amptitude'].'",  "'.$results12[0]['amptitude'].'"]' .
+                        '},' .
+                        '"Screen5": {' .
+                            '"Model":["'.$results13[0]['model'].'", "'.$results14[0]['model'].'"],' .
+                            '"Screen Size (mm)":["'.$results13[0]['screen_size_1'].' - '.$results13[0]['screen_size_2'].'",  "'.$results14[0]['screen_size_1'].' - '.$results14[0]['screen_size_2'].'"],' .
+                            '"Layers":["'.$results13[0]['layers'].'",  "'.$results14[0]['layers'].'"],' .
+                            '"Screen Aperture Min (mm)":["'.$results13[0]['aperture_min'].'",  "'.$results14[0]['aperture_min'].'"],' .
+                            '"Screen Aperture Max (mm)":["'.$results13[0]['aperture_max'].'",  "'.$results14[0]['aperture_max'].'"],' .
+                            '"Max Feeding Size (mm)":["'.$results13[0]['max_feed_size'].'",  "'.$results14[0]['max_feed_size'].'"],' .
+                            '"Min Capacity (t/h)":["'.$results13[0]['capacity_min'].'",  "'.$results14[0]['capacity_min'].'"],' .
+                            '"Max Capacity (t/h)":["'.$results13[0]['capacity_max'].'",  "'.$results14[0]['capacity_max'].'"],' .
+                            '"Power (Kw)":["'.$results13[0]['power'].'",  "'.$results14[0]['power'].'"],' .
+                            '"Vibrating Frequency(r/min)":["'.$results13[0]['vibrating_frequency'].'",  "'.$results14[0]['vibrating_frequency'].'"],' .
+                            '"Amplitude (mm)":["'.$results13[0]['amptitude'].'",  "'.$results14[0]['amptitude'].'"]' .
                         '}' .
                     '}}';
 
@@ -580,9 +720,4 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
     $conn = null;
 
     */
-
-    
-function calculateSievePercentage(){
-
-}
 ?>

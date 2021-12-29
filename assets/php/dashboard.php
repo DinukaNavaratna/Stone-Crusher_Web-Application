@@ -23,11 +23,11 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $cone_crusher_count = $results[0]['count'];
         
-        /*$sql = "select count(*) from screens;";
+        $sql = "select sum(tbl.EachTableCount) as count from ( select count(*) as EachTableCount from screens_low UNION ALL select count(*) as EachTableCount from screens_high ) tbl;";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $screens_count = $results[0]['count'];*/
+        $screens_count = $results[0]['count'];
         
     } catch(PDOException $e) {
         echo "failed : " . $e->getMessage();

@@ -203,7 +203,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h2 id="modal-topic">Topic</h2>
-                <span class="model_btns" id="model_btns"><button class="model_btn">Button 01</button><button class="model_btn">Button 02</button></span>
+                <span class="model_btns" id="model_btns"><button class="model_btn">Reduction Ratio</button><button class="model_btn">Particle Size Distribution</button></span>
                 <span class="close">&times;</span>
               </div>  
               <div class="modal-body">
@@ -527,7 +527,7 @@
                 <td rowspan="2" colspan="2"> 
                   <div class="card" onclick="oo('Output');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0" id="output_title">Special Output</h6>
+                      <h6 class="text-center mb-0" id="output_title">Manufactured Sand</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="output_value">0 t/h</span>
                     </div>

@@ -124,10 +124,11 @@ function create_diagram(){
     $.ajax({
         url:"http://localhost/Stone%20Crusher/assets/php/functions.php",
         type: "GET",
-        data: {"max_input_size": "210", "output_size_min": "0", "output_size_max": "0", "capacity": "5"},
+        data: {"max_input_size": input_size2, "output_size_min": "0", "output_size_max": "0", "capacity": required_input_capacity, "screen1": r5_output_size2, "screen2": r4_output_size2, "screen3": r3_output_size2, "screen4": r2_output_size2, "screen5": r1_output_size2},
         success:function(response){
-            //console.log(response);
+            console.log("\n\n"+response+"\n\n");
             if(response.includes("failed")){
+                console.log("Crusher data\n"+response);
                 alert("Failed");
             } else {
                 obj = JSON.parse(response);
@@ -179,8 +180,8 @@ function create_diagram(){
         type: "GET",
         data: {"sieve": "true", "input_1_1": input_1_1, "input_1_2": input_1_2, "input_2_1": input_2_1, "input_2_2": input_2_2, "input_3_1": input_3_1, "input_3_2": input_3_2, "input_4_1": input_4_1, "input_4_2": input_4_2, "input_5_1": input_5_1, "input_5_2": input_5_2},
         success:function(response){
-            //console.log("Sieve \n"+response);
             if(response.includes("failed")){
+                console.log("Sieve \n"+response);
                 alert("Failed");
             } else {
                 obj = JSON.parse(response);
