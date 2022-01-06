@@ -136,7 +136,7 @@ function create_diagram(){
                 for(var crusher in crushers){
                     try{
                         if(crusher == "Feeder"){
-                            document.getElementById(crusher).innerHTML = crushers[crusher].Model[0];
+                            document.getElementById(crusher).innerHTML = crushers[crusher].Model[0]+"<br>"+crushers[crusher].Model[1];
                         } else {
                             document.getElementById(crusher+"1").innerHTML = crushers[crusher].Model[0];
                             document.getElementById(crusher+"2").innerHTML = crushers[crusher].Model[1];
