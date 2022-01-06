@@ -293,26 +293,29 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
         
         //Jaw Crusher
         //$sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
-        $sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
+        
+        ///Check capacity_min also
+        $sql1 = "SELECT * FROM `jaw_crushers_low` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." AND capacity_min <= ".$_GET['capacity']." ORDER BY max_feed_size LIMIT 1;";
+        /// Check capacity min also
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
         $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
         
         //$sql2 = "SELECT * FROM `jaw_crushers_high` WHERE max_feed_size >= ".$_GET['max_input_size']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." AND capacity_max >= ".$_GET['capacity']." ;";
-        $sql2 = "SELECT * FROM `jaw_crushers_high` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
+        $sql2 = "SELECT * FROM `jaw_crushers_high` WHERE max_feed_size >= ".$_GET['max_input_size']." AND capacity_max >= ".$_GET['capacity']." AND capacity_min <= ".$_GET['capacity']." ORDER BY max_feed_size LIMIT 1;";
         $stmt2 = $conn->prepare($sql2);
         $stmt2->execute();
         $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
         
         //Cone Crusher
         //$sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
-        $sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
+        $sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." AND capacity_min <= ".$_GET['capacity']." ORDER BY max_feed_size LIMIT 1;";
         $stmt3 = $conn->prepare($sql3);
         $stmt3->execute();
         $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
         //$sql4 = "SELECT * FROM `cone_crushers_high` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND discharge_size_min <= ".$_GET['output_size_min']." AND discharge_size_max >= ".$_GET['output_size_max']." AND capacity_min <= ".$_GET['capacity']." ;";
-        $sql4 = "SELECT * FROM `cone_crushers_high` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." LIMIT 1;;";
+        $sql4 = "SELECT * FROM `cone_crushers_high` WHERE max_feed_size >= ".$results2[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." AND capacity_min <= ".$_GET['capacity']." ORDER BY max_feed_size LIMIT 1;";
         $stmt4 = $conn->prepare($sql4);
         $stmt4->execute();
         $results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
