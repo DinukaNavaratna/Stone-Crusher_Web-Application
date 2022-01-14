@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 14, 2022 at 03:26 AM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 29, 2021 at 01:40 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -160,64 +160,6 @@ CREATE TABLE `feeder` (
 --
 
 INSERT INTO `feeder` (`id`, `model`, `max_feed_size`, `capacity`) VALUES
-(12, 'GZD-650×2300', 300, 80),
-(13, 'GZD-750×2500', 350, 100),
-(14, 'GZD-850×3000', 400, 120),
-(15, 'GZD-1000×3600', 500, 150),
-(16, 'GZD-1100×4200', 580, 240),
-(17, 'GZD-1300×4900', 650, 450),
-(18, 'GZD-1500×5600', 1050, 450),
-(19, 'ZSW-490×110', 630, 150),
-(20, 'ZSW-380×95', 500, 100),
-(21, 'ZSW-600×130', 750, 400),
-(22, 'ZSW-490×130', 750, 400);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feeder_high`
---
-
-CREATE TABLE `feeder_high` (
-  `id` int(11) NOT NULL,
-  `model` varchar(20) NOT NULL,
-  `max_feed_size` int(11) NOT NULL,
-  `capacity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `feeder_high`
---
-
-INSERT INTO `feeder_high` (`id`, `model`, `max_feed_size`, `capacity`) VALUES
-(19, 'BL800', 350, 50),
-(20, 'BL1000', 470, 100),
-(21, 'BL1200', 650, 120),
-(22, 'BL1400', 680, 140),
-(23, 'BL1600', 700, 320),
-(24, 'BL1800', 800, 500),
-(25, 'BL2000', 1000, 500),
-(26, 'BL2400', 1500, 500),
-(27, 'BL2800', 1800, 1000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feeder_low`
---
-
-CREATE TABLE `feeder_low` (
-  `id` int(11) NOT NULL DEFAULT 0,
-  `model` varchar(20) NOT NULL,
-  `max_feed_size` int(11) NOT NULL,
-  `capacity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `feeder_low`
---
-
-INSERT INTO `feeder_low` (`id`, `model`, `max_feed_size`, `capacity`) VALUES
 (12, 'GZD-650×2300', 300, 80),
 (13, 'GZD-750×2500', 350, 100),
 (14, 'GZD-850×3000', 400, 120),
@@ -599,13 +541,6 @@ ALTER TABLE `feeder`
   ADD UNIQUE KEY `model` (`model`);
 
 --
--- Indexes for table `feeder_high`
---
-ALTER TABLE `feeder_high`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `model` (`model`);
-
---
 -- Indexes for table `jaw_crushers_high`
 --
 ALTER TABLE `jaw_crushers_high`
@@ -664,12 +599,6 @@ ALTER TABLE `cone_crushers_low`
 --
 ALTER TABLE `feeder`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `feeder_high`
---
-ALTER TABLE `feeder_high`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `jaw_crushers_high`
