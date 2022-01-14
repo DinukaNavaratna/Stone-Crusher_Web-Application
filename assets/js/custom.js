@@ -248,9 +248,11 @@ function create_diagram(){
             document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
         }
 
-        document.getElementById("screen"+(i+2)).innerHTML = "Screen "+(i+2)+"<br>"+rows[i][0]+" - "+rows[i][1]+" mm";
+        document.getElementById("screen"+(i+2)).innerHTML = "Screen "+(i+2)+"<br>"+rows[i][0]+" mm";
         document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" mm";
     }
+
+    document.getElementById("screen1").innerHTML = "Screen 01<br>"+rows[0][1]+" mm";
 
     var row_count = rows.length;
     //document.getElementById("output_title").innerHTML = "Output < "+rows[row_count-1][0]+" mm";
