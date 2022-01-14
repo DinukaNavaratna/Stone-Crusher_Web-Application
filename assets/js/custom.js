@@ -322,21 +322,26 @@ function oo2(type){
     document.getElementById("modal-topic2").innerHTML = type;
     
     if(type.includes("Cone")){
+        console.log(cone_max_output1);
+        console.log(cone_max_input1);
+        console.log(cone_max_output2);
+        console.log(cone_max_input2);
+        
         var cone_max_output_arr = cone_max_output1.split(" - ");
-        cone_max_output1 = cone_max_output_arr[1]
+        cone_max_output11 = cone_max_output_arr[1]
         cone_max_output_arr = cone_max_output2.split(" - ");
-        cone_max_output2 = cone_max_output_arr[1]
+        cone_max_output22 = cone_max_output_arr[1]
 
-        value1 = cone_max_input1/cone_max_output1;
-        value2 = cone_max_input2/cone_max_output2;
+        value1 = cone_max_input1/cone_max_output11;
+        value2 = cone_max_input2/cone_max_output22;
     } else if(type.includes("Jaw")){
         var jaw_max_output_arr = jaw_max_output1.split(" - ");
-        jaw_max_output1 = jaw_max_output_arr[1]
+        jaw_max_output11 = jaw_max_output_arr[1]
         jaw_max_output_arr = jaw_max_output2.split(" - ");
-        jaw_max_output2 = jaw_max_output_arr[1]
+        jaw_max_output22 = jaw_max_output_arr[1]
 
-        value1 = jaw_max_input1/jaw_max_output1;
-        value2 = jaw_max_input2/jaw_max_output2;
+        value1 = jaw_max_input1/jaw_max_output11;
+        value2 = jaw_max_input2/jaw_max_output22;
     }
     
     
