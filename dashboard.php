@@ -25,13 +25,13 @@
   <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-444444">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="#">
         <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Proccessing Plant Design</span>
+        <span class="ms-1 font-weight-bold" style="color:antiquewhite;">Proccessing Plant Design</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -56,7 +56,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">About Us</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">About Us</span>
           </a>
         </li>
         <li class="nav-item">
@@ -96,7 +96,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Flow Chart Creator</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">Flow Chart Creator</span>
           </a>
         </li>
         <li class="nav-item">
@@ -117,7 +117,7 @@
               </g>
             </svg>
             </div>
-            <span class="nav-link-text ms-1">Feedback</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">Feedback</span>
           </a>
         </li>
       </ul>
@@ -231,7 +231,7 @@
                   <div class="bg-gradient-primary border-radius-lg h-100">
                     <img src="assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                     <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                      <img class="w-100 position-relative z-index-2 pt-4" src="assets/img/illustrations/rocket-white.png" alt="rocket">
+                      <img class="w-100 position-relative z-index-2 pt-4" src="assets/img/icon.png" alt="image">
                     </div>
                   </div>
                 </div>
@@ -243,9 +243,10 @@
           <div class="card h-100 p-3">
             <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('assets/img/ivancik.jpg');">
               <span class="mask bg-gradient-dark"></span>
-              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                <h5 class="text-white font-weight-bolder mb-4 pt-2">About the Project</h5>
-                <p class="text-white"><?php echo $about; ?></p>
+              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-0">
+                <img class="w-100 position-relative z-index-2" src="assets/img/cover.jpg" alt="image">
+                <!--<h5 class="text-white font-weight-bolder mb-4 pt-2">About the Project</h5>
+                <p class="text-white"><?php echo $about; ?></p>-->
               </div>
             </div>
           </div>

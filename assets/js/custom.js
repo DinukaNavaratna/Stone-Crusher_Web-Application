@@ -6,6 +6,16 @@ if (win && document.querySelector('#sidenav-scrollbar')) {
   Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
 }
 
+var jaw_max_input1 = 0;
+var jaw_max_output1 = 0;
+var cone_max_input1 = 0;
+var cone_max_output1 = 0;
+var jaw_max_input2 = 0;
+var jaw_max_output2 = 0;
+var cone_max_input2 = 0;
+var cone_max_output2 = 0;
+
+
 //--------------------- Inout Box Submit Actions ---------------------------
 var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift;
 var crushers;
@@ -138,6 +148,17 @@ function create_diagram(){
                         if(crusher == "Feeder"){
                             document.getElementById(crusher).innerHTML = crushers[crusher].Model[0]+"<br>"+crushers[crusher].Model[1];
                         } else {
+                            if(crusher == "JawCrusher"){
+                                jaw_max_input1 = crushers[crusher]['Max Feeding Size (mm)'][0];
+                                jaw_max_output1 = crushers[crusher]['Discharge Size (mm)'][0];
+                                jaw_max_input2 = crushers[crusher]['Max Feeding Size (mm)'][1];
+                                jaw_max_output2 = crushers[crusher]['Discharge Size (mm)'][1];
+                            } else if(crusher == "ConeCrusher"){
+                                cone_max_input1 = crushers[crusher]['Max Feeding Size (mm)'][0];
+                                cone_max_output1 = crushers[crusher]['Discharge Size (mm)'][0];
+                                cone_max_input2 = crushers[crusher]['Max Feeding Size (mm)'][1];
+                                cone_max_output2 = crushers[crusher]['Discharge Size (mm)'][1];
+                            }
                             document.getElementById(crusher+"1").innerHTML = crushers[crusher].Model[0];
                             document.getElementById(crusher+"2").innerHTML = crushers[crusher].Model[1];
                         }
@@ -227,6 +248,7 @@ function create_diagram(){
             document.getElementById("s"+(i+2)+"_row3").classList.remove("s"+(i+2)+"_row");
         }
 
+        document.getElementById("screen"+(i+2)).innerHTML = "Screen "+(i+2)+"<br>"+rows[i][0]+" - "+rows[i][1]+" mm";
         document.getElementById("screen"+(i+2)+"_output").innerHTML = rows[i][0]+" - "+rows[i][1]+" mm";
     }
 
@@ -259,6 +281,8 @@ function oo(type){
 
     document.getElementById("modal-topic").innerHTML = type;
     if (type == "Cone Crusher" || type == "Jaw Crusher"){
+        document.getElementById('model_btn_ratio').setAttribute('onclick','oo2("'+type+'")');
+        document.getElementById('model_btn_distribution').setAttribute('onclick','oo3("'+type+'")');
         document.getElementById("model_btns").style.display = "initial";
     } else {
         document.getElementById("model_btns").style.display = "none";
@@ -273,6 +297,79 @@ function oo(type){
     }
     
     document.getElementById("table_body_content").innerHTML = table_body_content;
+}
+
+
+//--------------------- Model Box Pop-up ---------------------------
+function oo2(type){
+    var modal = document.getElementById("myModal2");
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close2")[0];
+    crusher_type = type.replace(/\s/g,'');
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
+    
+    document.getElementById("modal-topic2").innerHTML = type;
+    
+    if(type.includes("Cone")){
+        var cone_max_output_arr = cone_max_output1.split(" - ");
+        cone_max_output1 = cone_max_output_arr[1]
+        cone_max_output_arr = cone_max_output2.split(" - ");
+        cone_max_output2 = cone_max_output_arr[1]
+
+        value1 = cone_max_input1/cone_max_output1;
+        value2 = cone_max_input2/cone_max_output2;
+    } else if(type.includes("Jaw")){
+        var jaw_max_output_arr = jaw_max_output1.split(" - ");
+        jaw_max_output1 = jaw_max_output_arr[1]
+        jaw_max_output_arr = jaw_max_output2.split(" - ");
+        jaw_max_output2 = jaw_max_output_arr[1]
+
+        value1 = jaw_max_input1/jaw_max_output1;
+        value2 = jaw_max_input2/jaw_max_output2;
+    }
+    
+    
+    var table_body_content = "<tr><td></td><th>Low Budget</th><th>High Budget</th></tr>";
+    table_body_content += "<tr><td>&#8226; Reduction Ratio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Math.round(value1 * 100) / 100+"</td><td>"+Math.round(value2 * 100) / 100+"</td></tr>"
+    
+    document.getElementById("table_body_content2").innerHTML = table_body_content;
+}
+//--------------------- Model Box Pop-up ---------------------------
+function oo3(type){
+    var modal = document.getElementById("myModal2");
+    modal.style.display = "block";
+    var span = document.getElementsByClassName("close2")[0];
+    crusher_type = type.replace(/\s/g,'');
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
+    
+    document.getElementById("modal-topic2").innerHTML = type;
+    
+    
+    var table_body_content = "<tr><td><img style='width:100%;' src='assets/img/particle_size_distribution.png'></td></tr>";
+    
+    document.getElementById("table_body_content2").innerHTML = table_body_content;
 }
 
 function parse(){

@@ -327,7 +327,7 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
         $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
         
         if(count($results3) <= 0){
-            $sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." ORDER BY max_feed_size LIMIT 1;";
+            $sql3 = "SELECT * FROM `cone_crushers_low` WHERE max_feed_size >= ".$results1[0]['discharge_size_max']." AND capacity_max >= ".$_GET['capacity']." ORDER BY capacity_min LIMIT 1;";
             $stmt3 = $conn->prepare($sql3);
             $stmt3->execute();
             $results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
@@ -446,7 +446,8 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
                             '"Max Capacity (t/h)":["'.$results1[0]['capacity_max'].'",  "'.$results2[0]['capacity_max'].'"],' .
                             '"Rotate Speed":["'.$results1[0]['rotate_speed'].'",  "'.$results2[0]['rotate_speed'].'"],' .
                             '"Motor & Power (kw)":["'.$results1[0]['motor_power'].'",  "'.$results2[0]['motor_power'].'"],' .
-                            '"Adjustable Range Of Output Size (mm)":["'.$results1[0]['discharge_size_min'].' - '.$results1[0]['discharge_size_max'].'",  "'.$results2[0]['discharge_size_min'].' - '.$results2[0]['discharge_size_max'].'"],' .
+                            '"Discharge Size (mm)":["'.$results1[0]['discharge_size_min'].' - '.$results1[0]['discharge_size_max'].'",  "'.$results2[0]['discharge_size_min'].' - '.$results2[0]['discharge_size_max'].'"],' .
+                            '"Closed Side Settings":["'.$results1[0]['closed_side_settings'].'",  "'.$results2[0]['closed_side_settings'].'"],' .
                             '"Weight (t)":["'.$results1[0]['weight'].'",  "'.$results2[0]['weight'].'"]' .
                         '},' .
                         '"ConeCrusher": {' .
@@ -457,7 +458,8 @@ else if(isset($_GET['max_input_size']) && isset($_GET['output_size_min']) && iss
                             '"Max Capacity (t/h)":["'.$results3[0]['capacity_max'].'",  "'.$results4[0]['capacity_max'].'"],' .
                             '"Rotate Speed":["'.$results3[0]['rotate_speed'].'",  "'.$results4[0]['rotate_speed'].'"],' .
                             '"Motor & Power (kw)":["'.$results3[0]['motor_power'].'",  "'.$results4[0]['motor_power'].'"],' .
-                            '"Adjustable Range Of Output Size (mm)":["'.$results3[0]['discharge_size_min'].' - '.$results3[0]['discharge_size_max'].'",  "'.$results4[0]['discharge_size_min'].' - '.$results4[0]['discharge_size_max'].'"],' .
+                            '"Discharge Size (mm)":["'.$results3[0]['discharge_size_min'].' - '.$results3[0]['discharge_size_max'].'",  "'.$results4[0]['discharge_size_min'].' - '.$results4[0]['discharge_size_max'].'"],' .
+                            '"Closed Side Settings":["'.$results3[0]['closed_side_settings'].'",  "'.$results4[0]['closed_side_settings'].'"],' .
                             '"Weight (t)":["'.$results3[0]['weight'].'",  "'.$results4[0]['weight'].'"]' .
                         '},' .
                         '"Screen1": {' .

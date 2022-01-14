@@ -22,13 +22,13 @@
   <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-444444">
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="#">
         <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Proccessing Plant Design</span>
+        <span class="ms-1 font-weight-bold" style="color:antiquewhite;">Proccessing Plant Design</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -53,7 +53,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">About Us</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">About Us</span>
           </a>
         </li>
         <li class="nav-item">
@@ -73,7 +73,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
@@ -114,7 +114,7 @@
               </g>
             </svg>
             </div>
-            <span class="nav-link-text ms-1">Feedback</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">Feedback</span>
           </a>
         </li>
       </ul>
@@ -226,6 +226,16 @@
                     </div>
                   </div>
                 </div>
+                <div class="mb-3">
+                  <div class="input-suffix" style="width: 100%; display: inline-block;">
+                    
+                    <div>
+                      <input type="checkbox" min="0" id="r5_output_size1" class="" style="width: 10%; display: inline-block;" placeholder="100" aria-label="output_size">
+                      <label>M-Sand | Percentage from the dust</label>
+                      <input type="number" min="0" max="100" id="r5_output_size2" class="form-control" style="width: 20%; margin-left:3%; display: inline-block;" placeholder="100" aria-label="output_size">
+                    </div>
+                  </div>
+                </div>
                 <div class="text-center">
                   <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onclick="create_diagram();">Create Diagram</button>
                 </div>
@@ -246,11 +256,28 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h2 id="modal-topic">Topic</h2>
-                <span class="model_btns" id="model_btns"><button class="model_btn">Reduction Ratio</button><button class="model_btn">Particle Size Distribution</button></span>
+                <span class="model_btns" id="model_btns"><button class="model_btn" id="model_btn_ratio" onclick="oo2('');">Reduction Ratio</button><button class="model_btn" id="model_btn_distribution" onclick="oo3('Particle Size Distribution');">Particle Size Distribution</button></span>
                 <span class="close">&times;</span>
               </div>  
               <div class="modal-body">
                 <table id="table_body_content">
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- The Modal -->
+          <div id="myModal2" class="modal2">
+
+            <!-- Modal content -->
+            <div class="modal-content2">
+              <div class="modal-header2">
+                <h2 id="modal-topic2">Reduction Ratio</h2>
+                <span class="close2">&times;</span>
+              </div>  
+              <div class="modal-body">
+                <table id="table_body_content2">
                 </table>
               </div>
             </div>
@@ -269,7 +296,7 @@
                 <td rowspan="2"> 
                   <h6 class="text-center mb-0">Hopper</h6>
                   <div class="triangle_down"></div>
-                  <span id="hopper_output">0 t/h</span>
+                  <span id="hopper_output" style="color:antiquewhite;">0 t/h</span>
                   <!--
                   <div class="card">
                     <div class="card-body pt-3 p-3 text-center">
@@ -359,7 +386,7 @@
                     <span class="line arrow-left"></span>
                     <span class="lineh"></span>
                     <span class="linev"></span>
-                    <p id="screen1_return">0 t/h</p>
+                    <p id="screen1_return" style="color:antiquewhite;">0 t/h</p>
                   </div>
                 </td>
               </tr>
@@ -380,7 +407,7 @@
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 1');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 1</h6>
+                      <h6 class="text-center mb-0" id="screen1">Screen 1</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen11">#000000</span><br>
                       <span class="text-xs" id="Screen12">#000000</span>
@@ -407,12 +434,12 @@
               </tr>
               
               <tr id="s2_row1" class="s2_row">
-                <td rowspan="2"><span id="screen2_output">0 mm</span><br><span id="s2-s3">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen2_output" style="color:antiquewhite;">0 mm</span><br><span id="s2-s3" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 2');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 2</h6>
+                      <h6 class="text-center mb-0" id="screen2">Screen 2</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen21">#000000</span><br>
                       <span class="text-xs" id="Screen22">#000000</span>
@@ -439,12 +466,12 @@
               </tr>
               
               <tr id="s3_row1" class="s3_row">
-                <td rowspan="2"></div><span id="screen3_output">0 mm</span><br><span id="s3-s4">0 t/h</span><div class="triangle_up"></td>
+                <td rowspan="2"></div><span id="screen3_output" style="color:antiquewhite;">0 mm</span><br><span id="s3-s4" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 3');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 3</h6>
+                      <h6 class="text-center mb-0" id="screen3">Screen 3</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen31">#000000</span><br>
                       <span class="text-xs" id="Screen32">#000000</span>
@@ -471,12 +498,12 @@
               </tr>
               
               <tr id="s4_row1" class="s4_row">
-                <td rowspan="2"><span id="screen4_output">0 mm</span><br><span id="s4-s5">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen4_output" style="color:antiquewhite;">0 mm</span><br><span id="s4-s5" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 4');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 4</h6>
+                      <h6 class="text-center mb-0" id="screen4">Screen 4</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen41">#000000</span><br>
                       <span class="text-xs" id="Screen42">#000000</span>
@@ -503,12 +530,12 @@
               </tr>
               
               <tr id="s5_row1" class="s5_row">
-                <td rowspan="2"><span id="screen5_output">0 mm</span><br><span id="s5-s6">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen5_output" style="color:antiquewhite;">0 mm</span><br><span id="s5-s6" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 5');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 5</h6>
+                      <h6 class="text-center mb-0" id="screen5">Screen 5</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen51">#000000</span><br>
                       <span class="text-xs" id="Screen52">#000000</span>
@@ -535,12 +562,12 @@
               </tr>
               
               <tr id="s6_row1" class="s6_row">
-                <td rowspan="2"><span id="screen6_output">0 mm</span><br><span id="s6-output">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen6_output" style="color:antiquewhite;">0 mm</span><br><span id="s6-output" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 6');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0">Screen 6</h6>
+                      <h6 class="text-center mb-0" id="screen6">Screen 6</h6>
                       <hr class="horizontal dark my-2">
                       <span class="text-xs" id="Screen61">#000000</span><br>
                       <span class="text-xs" id="Screen62">#000000</span>
@@ -576,7 +603,7 @@
                     </div>
                   </div>
                 </td>
-                <td rowspan="2"><div class="triangle_up"></div><span id="output_size">0 mm</span><br><span id="output_perc">0 t/h</span></td>
+                <td rowspan="2"><div class="triangle_up"></div><span id="output_size" style="color:antiquewhite;">0 mm</span><br><span id="output_perc" style="color:antiquewhite;">0 t/h</span></td>
                 <td></td>
               </tr>
 
