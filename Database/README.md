@@ -1,4 +1,4 @@
-##How to import .sql file to local database (PHP My Admin)
+## How to import .sql file to local database (PHP My Admin)
 1. Open XAMPP and start 'Apache' & 'MySQL'
 2. Open browser and go to 'http://localhost/phpmyadmin/'
 3. Create new database with the name 'stone_crusher'
@@ -6,7 +6,7 @@
 5. Click 'Choose File' and select the 'stone_crusher.sql' file in this directory
 6. Click on 'Go' on the right bottom
 
-###If you have an outdated version of the database with the same name first delete the old database
+### If you have an outdated version of the database with the same name first delete the old database
 1. Open XAMPP and start 'Apache' & 'MySQL'
 2. Open browser and go to 'http://localhost/phpmyadmin/'
 3. Click on the home icon on the left panel
