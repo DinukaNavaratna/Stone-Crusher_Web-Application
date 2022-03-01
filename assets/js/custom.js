@@ -1,3 +1,23 @@
+window.onload = function () {
+    /* event listener */
+    document.getElementById("r1_output_size2").addEventListener('change', output_size_alert);
+    document.getElementById("r2_output_size2").addEventListener('change', output_size_alert);
+    document.getElementById("r3_output_size2").addEventListener('change', output_size_alert);
+    document.getElementById("r4_output_size2").addEventListener('change', output_size_alert);
+    document.getElementById("r5_output_size2").addEventListener('change', output_size_alert);
+}
+function output_size_alert(){
+    var alert_id = this.id.substring(0, this.id.length - 1);
+    var value = this.value;
+    if(value == ""){
+        document.getElementById(alert_id).innerHTML = "";
+        document.getElementById(alert_id).style.display = "none";
+    } else {
+        document.getElementById(alert_id).innerHTML = "Up to "+value+"mm";
+        document.getElementById(alert_id).style.display = "initial";
+    }
+}
+
 var win = navigator.platform.indexOf('Win') > -1;
 if (win && document.querySelector('#sidenav-scrollbar')) {
   var options = {
@@ -15,9 +35,11 @@ var jaw_max_output2 = 0;
 var cone_max_input2 = 0;
 var cone_max_output2 = 0;
 
+const rows = [];
+
 
 //--------------------- Inout Box Submit Actions ---------------------------
-var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift;
+var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift, expected_efficiency;
 var crushers;
 var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2;
 
@@ -29,13 +51,23 @@ function open_input2(){
     working_days_per_month = document.getElementById("working_days_per_month").value;
     shifts_per_day = document.getElementById("shifts_per_day").value;
     hours_per_shift = document.getElementById("hours_per_shift").value;
+    expected_efficiency = document.getElementById("expected_efficiency").value;
     zeros = /^0*$/;
 
+    if(working_days_per_month > 28){
+        alert("More than 28 working days per month is not suitable for Sri Lankan regulations!");
+        return;
+    }
+    if(hours_per_shift > 8){
+        alert("More than 8 hours per shift is not suitable for Sri Lankan regulations!");
+        return;
+    }
+
     
-    if((m_type == "default") || (input_size1 == "") ||  (input_size2 == "") ||  (monthly_output_capacity == "") ||  (working_days_per_month == "") ||  (shifts_per_day == "") ||  (hours_per_shift == "")){
+    if((m_type == "default") || (input_size1 == "") ||  (input_size2 == "") ||  (monthly_output_capacity == "") ||  (working_days_per_month == "") ||  (shifts_per_day == "") ||  (hours_per_shift == "") ||  (expected_efficiency == "")){
         alert("All the fileds are required to be filled properly!");
         return;
-    } else if(zeros.test(input_size1) || zeros.test(input_size2) || zeros.test(monthly_output_capacity) || zeros.test(working_days_per_month) || zeros.test(shifts_per_day) || zeros.test(hours_per_shift)){
+    } else if(zeros.test(input_size1) || zeros.test(input_size2) || zeros.test(monthly_output_capacity) || zeros.test(working_days_per_month) || zeros.test(shifts_per_day) || zeros.test(hours_per_shift) || zeros.test(expected_efficiency)){
         alert("None of the values can be '0'!");
         return;
     }
@@ -55,8 +87,6 @@ function create_diagram(){
     r4_output_size2 = document.getElementById("r4_output_size2").value;
     r5_output_size1 = document.getElementById("r5_output_size1").value;
     r5_output_size2 = document.getElementById("r5_output_size2").value;
-
-    const rows = [];
 
     if(r5_output_size1 <= 0 || r5_output_size2 <= 0){
         r5_output_size1 = 0;
@@ -96,7 +126,7 @@ function create_diagram(){
 
     output_per_hour = monthly_output_capacity/(working_days_per_month*shifts_per_day*hours_per_shift);
     output_per_hour = Math.round(output_per_hour*100)/100;
-    required_input_capacity = 100/95*output_per_hour;
+    required_input_capacity = 100/expected_efficiency*output_per_hour;
     required_input_capacity = Math.round(required_input_capacity * 100) / 100;
     document.getElementById('feeder-jaw').innerHTML = required_input_capacity+" t/h";
     document.getElementById('jaw-cone').innerHTML = required_input_capacity+" t/h";
@@ -164,7 +194,7 @@ function create_diagram(){
                         }
                     } catch(x){}
                 }
-                console.log(crushers);
+                //console.log(crushers);
                 /*
                 for(var crusher in crushers){
                     console.log(crusher);
@@ -259,6 +289,100 @@ function create_diagram(){
     
     document.getElementById("chart-input2").style.display = "none";
     document.getElementById("chart-body").style.display = "block";
+    document.getElementById("download_pdf_btn").style.display = "initial";
+    document.getElementById("save_chart_btn").style.display = "initial";
+}
+
+
+//--------------------- Download/Save PDF ---------------------------
+function pdf_generator(option, saved_pdf_body, pdf_name){
+    if(option == "saved_pdf"){
+        download_pdf(saved_pdf_body, pdf_name);
+    } else {
+        var pdf_body = "<!DOCTYPE html><html><head></head><body>";
+        var count = 0;
+        for(var crusher_type in crushers){
+            type = crusher_type.replace(/([A-Z])/g, ' $1').trim()
+            type = type.replace(/[^0-9](?=[0-9])/g, '$& ');
+            pdf_body += `<h2>`+type+`</h2><table><tr><td></td><th>Low Budget</th><th>High Budget</th></tr>`
+            for (var i in crushers[crusher_type]) {
+                var key = i;
+                var value1 = crushers[crusher_type][i][0];
+                var value2 = crushers[crusher_type][i][1];
+                if (value1 == "0" || value1 == "") {
+                    value1 = "-";
+                }
+                if (value2 == "0" || value2 == "") {
+                    value2 = "-";
+                }
+                if (key == "Closed Side Settings" && (value1 == "-" || value2 == "-")) {
+                    var value1 = crushers[crusher_type]["Discharge Size (mm)"][0];
+                    var value2 = crushers[crusher_type]["Discharge Size (mm)"][1];
+                    var value1 = value1.split(" - ");
+                    var value2 = value2.split(" - ");
+                }
+                pdf_body += "<tr><td>&#8226; " + key + "</td><td>" + value1 + "</td><td>" + value2 + "</td></tr>"
+            }
+            pdf_body += `</table><hr>`
+            count++;
+            if(count-4 >= rows.length){
+                break;
+            }
+        }
+        pdf_body += "</body></html>";
+
+        if(option == "download"){
+            download_pdf(pdf_body, pdf_name);
+        } else if(option = "save"){
+            let chart_name = prompt("How do you want the chart details to be saved as?", "");
+            if (chart_name != null) {
+                $.ajax({
+                    url:"http://localhost/Stone%20Crusher/assets/php/save_chart.php?option=save_chart",
+                    type: "POST",
+                    data: {"pdf_body": pdf_body, "name": chart_name},
+                    success:function(response){
+                        if(response.includes("failed")){
+                            console.log("Chart save \n"+response);
+                            alert("Failed");
+                        } else {
+                            alert(response);
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        alert("Error");
+                    }
+                });
+            } else {
+                alert("Sorry. Chart details cannot be saved without a reference name!");
+            }
+        }
+    }
+}
+
+function download_pdf(pdf_body, pdf_name){
+    var doc = new jsPDF("p", "pt", "a4"),
+        source = pdf_body,
+        margins = {
+        top: 40,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    doc.fromHTML(
+        source, // HTML string or DOM elem ref.
+        margins.left, // x coord
+        margins.top,
+        {
+            // y coord
+            width: margins.width // max width of content on PDF
+        },
+        function(dispose) {
+            // dispose: object with X, Y of the last line add to the PDF
+            //          this allow the insertion of new lines after html
+            doc.save(pdf_name+".pdf");
+        },
+        margins
+    );
 }
 
 
@@ -295,6 +419,18 @@ function oo(type){
         var key = i;
         var value1 = crushers[crusher_type][i][0];
         var value2 = crushers[crusher_type][i][1];
+        if(value1 == "0" || value1 == ""){
+            value1 = "-";
+        }
+        if(value2 == "0" || value2 == ""){
+            value2 = "-";
+        }
+        if(key == "Closed Side Settings" && (value1 == "-" || value2 == "-")){
+            var value1 = crushers[crusher_type]["Discharge Size (mm)"][0];
+            var value2 = crushers[crusher_type]["Discharge Size (mm)"][1];
+            var value1 = value1.split(" - ");
+            var value2 = value2.split(" - ");
+        }
         table_body_content += "<tr><td>&#8226; "+key+"</td><td>"+value1+"</td><td>"+value2+"</td></tr>"
     }
     

@@ -2683,8 +2683,23 @@ progress {
   right: 15%;
   transition: all .05s ease-in-out;
 }
+.input-suffix-perc {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.input-suffix-perc::after {
+  content: '%';
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  transition: all .05s ease-in-out;
+}
 .mm::after {
   content: 'mm';
+}
+.perc::after {
+  content: '%';
 }
 .ton::after {
   content: 'Tons';

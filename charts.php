@@ -159,6 +159,10 @@
                   <label for="hours_per_shift">No. of Hours per Shift</label>
                   <input type="number" min="0" id="hours_per_shift" class="form-control" placeholder="8" value="8" aria-label="Hours per Shift">
                 </div>
+                <div class="mb-3 input-suffix perc">
+                  <label for="hours_per_shift">Expected efficiency</label>
+                  <input type="number" min="0" id="expected_efficiency" class="form-control" placeholder="95" value="95" aria-label="Expected Efficiency">
+                </div>
                 <div class="text-center">
                   <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onclick="open_input2();">Proceed</button>
                 </div>
@@ -185,6 +189,7 @@
                       <input type="number" min="0" id="r1_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
+                  <p id="r1_output_size" style="font-size:80%; display:none;"></p>
                 </div>
                 <div class="mb-3">
                   <div class="input-suffix mm" style="width: 100%; display: inline-block;">
@@ -195,6 +200,7 @@
                       <input type="number" min="0" id="r2_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
+                  <p id="r2_output_size" style="font-size:80%; display:none;"></p>
                 </div>
                 <div class="mb-3">
                   <div class="input-suffix mm" style="width: 100%; display: inline-block;">
@@ -205,6 +211,7 @@
                       <input type="number" min="0" id="r3_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
+                  <p id="r3_output_size" style="font-size:80%; display:none;"></p>
                 </div>
                 <div class="mb-3">
                   <div class="input-suffix mm" style="width: 100%; display: inline-block;">
@@ -215,6 +222,7 @@
                       <input type="number" min="0" id="r4_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
+                  <p id="r4_output_size" style="font-size:80%; display:none;"></p>
                 </div>
                 <div class="mb-3">
                   <div class="input-suffix mm" style="width: 100%; display: inline-block;">
@@ -225,14 +233,14 @@
                       <input type="number" min="0" id="r5_output_size2" class="form-control" style="width: 30%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
+                  <p id="r5_output_size" style="font-size:80%; display:none;"></p>
                 </div>
                 <div class="mb-3">
-                  <div class="input-suffix" style="width: 100%; display: inline-block;">
-                    
+                  <div class="input-suffix-perc" style="width: 100%; display: inline-block;">
                     <div>
-                      <input type="checkbox" min="0" id="r5_output_size1" class="" style="width: 10%; display: inline-block;" placeholder="100" aria-label="output_size">
+                      <input type="checkbox" min="0" id="m_sand" class="" style="width: 10%; display: inline-block;" placeholder="100" aria-label="output_size">
                       <label>M-Sand | Percentage from the dust</label>
-                      <input type="number" min="0" max="100" id="r5_output_size2" class="form-control" style="width: 20%; margin-left:3%; display: inline-block;" placeholder="100" aria-label="output_size">
+                      <input type="number" min="0" max="100" id="m_sand_percentage" class="form-control" style="width: 20%; margin-left:3%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
                 </div>
@@ -294,7 +302,7 @@
             <tbody>
               <tr>
                 <td rowspan="2"> 
-                  <h6 class="text-center mb-0">Hopper</h6>
+                  <h6 class="text-center mb-0" style="color:antiquewhite;">Hopper</h6>
                   <div class="triangle_down"></div>
                   <span id="hopper_output" style="color:antiquewhite;">0 t/h</span>
                   <!--
@@ -617,7 +625,14 @@
       </div>
     </div>
   </main>
+
+  <div id="save_chart_btn" title="Save Chart" style="display:none; right:3vw; top:3vh; background-color:#fff; position:fixed; border-radius: 50%;"><button style="background-color:transparent; borders:none; border-radius: 50%; padding:1vw;" onclick="pdf_generator('save', '', '');"><i class="fa fa-save" aria-hidden="true"></i></button></div>
+  <div id="download_pdf_btn" title="Download PDF" style="display:none; right:3vw; bottom:3vh; background-color:#fff; position:fixed; border-radius: 50%;"><button style="background-color:transparent; borders:none; border-radius: 50%; padding:1vw;" onclick="pdf_generator('download', '', 'MoraMP');"><i class="fa fa-download" aria-hidden="true"></i></button></div>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
   <!--   Core JS Files   -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
