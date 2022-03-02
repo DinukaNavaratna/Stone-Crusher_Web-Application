@@ -34,6 +34,8 @@ var jaw_max_input2 = 0;
 var jaw_max_output2 = 0;
 var cone_max_input2 = 0;
 var cone_max_output2 = 0;
+var final_output_capacity = "";
+var wp_array = [];
 
 const rows = [];
 
@@ -41,7 +43,7 @@ const rows = [];
 //--------------------- Inout Box Submit Actions ---------------------------
 var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift, expected_efficiency;
 var crushers;
-var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2;
+var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2, m_sand = false, m_sand_percentage;
 
 function open_input2(){
     m_type = document.getElementById("m_type").value;
@@ -122,6 +124,15 @@ function create_diagram(){
     if(rows.length == 0){
         alert("Please enter atleast one output particle size!");
         return;
+    }
+    
+    if(document.getElementById("m_sand").checked){
+        m_sand = true;
+        m_sand_percentage = document.getElementById("m_sand_percentage").value;
+        if(m_sand_percentage == "" || m_sand_percentage == "0"){
+            alert("M-Sand percentage is not valid!");
+            return;
+        }
     }
 
     output_per_hour = monthly_output_capacity/(working_days_per_month*shifts_per_day*hours_per_shift);
@@ -231,8 +242,8 @@ function create_diagram(){
         type: "GET",
         data: {"sieve": "true", "input_1_1": input_1_1, "input_1_2": input_1_2, "input_2_1": input_2_1, "input_2_2": input_2_2, "input_3_1": input_3_1, "input_3_2": input_3_2, "input_4_1": input_4_1, "input_4_2": input_4_2, "input_5_1": input_5_1, "input_5_2": input_5_2},
         success:function(response){
+            console.log("Sieve \n"+response);
             if(response.includes("failed")){
-                console.log("Sieve \n"+response);
                 alert("Failed");
             } else {
                 obj = JSON.parse(response);
@@ -260,9 +271,38 @@ function create_diagram(){
                 document.getElementById("s5-s6").innerHTML = s4_output+" t/h";
                 document.getElementById("s6-output").innerHTML = s5_output+" t/h";
 
-                document.getElementById("output_perc").innerHTML = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output+s5_output))*100)/100+" t/h";
+                final_output_capacity = Math.round((required_input_capacity-(s1_output+s2_output+s3_output+s4_output+s5_output))*100)/100;
+                document.getElementById("output_perc").innerHTML = final_output_capacity+" t/h";
+                document.getElementById("wp-output").innerHTML = final_output_capacity+" t/h";
 
                 document.getElementById("output_size").innerHTML = rows[(rows.length)-1][0]+" - "+rows[(rows.length)-1][1]+" mm";
+
+                if(m_sand == true){
+                    $.ajax({
+                        url:"http://localhost/Stone%20Crusher/assets/php/functions.php",
+                        type: "GET",
+                        data: {"wp": "true", "capacity": final_output_capacity},
+                        success:function(response){
+                            console.log("WP \n"+response);
+                            if(response.includes("failed")){
+                                alert("Failed");
+                            } else {
+                                wp_array = JSON.parse(response);
+                                document.getElementById("wp1").innerHTML = wp_array['model'];
+                            }
+                        },
+                        error: function (jqXHR, exception) {
+                            alert("Error");
+                        }
+                    });
+
+                    document.getElementById("output_perc").innerHTML = Math.round(final_output_capacity*(100-m_sand_percentage)/100)/100+" t/h";
+                    document.getElementById("wp-output").innerHTML = Math.round(final_output_capacity*(m_sand_percentage)/100)/100+" t/h";
+                    
+                    document.getElementById("m_row1").classList.remove("m_row");
+                    document.getElementById("m_row2").classList.remove("m_row");
+                    document.getElementById("m_row3").classList.remove("m_row");
+                }
             }
         },
         error: function (jqXHR, exception) {
@@ -304,7 +344,11 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
         for(var crusher_type in crushers){
             type = crusher_type.replace(/([A-Z])/g, ' $1').trim()
             type = type.replace(/[^0-9](?=[0-9])/g, '$& ');
-            pdf_body += `<h2>`+type+`</h2><table><tr><td></td><th>Low Budget</th><th>High Budget</th></tr>`
+            if(type.includes("Screen")){
+                number = type.match(/\d+/)[0]
+                type = type+" ("+rows[number-1][1]+" mm)"
+            }
+            pdf_body += `<h2>`+type+`</h2><table><tr><td></td><th>Low Budget</th><th>High Budget</th></tr>`;
             for (var i in crushers[crusher_type]) {
                 var key = i;
                 var value1 = crushers[crusher_type][i][0];
@@ -321,7 +365,7 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
                     var value1 = value1.split(" - ");
                     var value2 = value2.split(" - ");
                 }
-                pdf_body += "<tr><td>&#8226; " + key + "</td><td>" + value1 + "</td><td>" + value2 + "</td></tr>"
+                pdf_body += "<tr><td>&#8226; " + key + "</td><td>" + value1 + "</td><td>" + value2 + "</td></tr>";
             }
             pdf_body += `</table><hr>`
             count++;
@@ -329,7 +373,21 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
                 break;
             }
         }
-        pdf_body += "</body></html>";
+        if(m_sand){
+            pdf_body += `<h2>Washing Plant</h2><table><tr><th>Key</th><th>Value</th></tr>`;
+            for(var key in wp_array){
+                value = wp_array[key];
+                const words = key.split("_");
+                for (let i = 0; i < words.length; i++) {
+                    words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+                }
+                key = words.join(" ");
+                value = value.replace("&#8804;", "<=");
+                pdf_body += "<tr><td>&#8226; " + key + "</td><td>" + value + "</td></tr>";
+            }
+            pdf_body += `</table><hr>`
+        }
+        pdf_body += "</body><h1>_______________________</h1><p>This is a system generated report using Mora MP.</p></html>";
 
         if(option == "download"){
             download_pdf(pdf_body, pdf_name);
@@ -414,24 +472,36 @@ function oo(type){
         document.getElementById("model_btns").style.display = "none";
     }
 
-    var table_body_content = "<tr><td></td><th>Low Budget</th><th>High Budget</th></tr>";
-    for(var i in crushers[crusher_type]){
-        var key = i;
-        var value1 = crushers[crusher_type][i][0];
-        var value2 = crushers[crusher_type][i][1];
-        if(value1 == "0" || value1 == ""){
-            value1 = "-";
+    var table_body_content = "";
+    if(type == "Washing Plant"){
+        for(var key in wp_array){
+            value = wp_array[key];
+            const words = key.split("_");
+            for (let i = 0; i < words.length; i++) {
+                words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+            }
+            key = words.join(" ");
+            table_body_content += "<tr><td>&#8226; "+key+"</td><td>"+value+"</td></tr>"
         }
-        if(value2 == "0" || value2 == ""){
-            value2 = "-";
+    } else {
+        table_body_content = "<tr><td></td><th>Low Budget</th><th>High Budget</th></tr>";
+        for(var key in crushers[crusher_type]){
+            var value1 = crushers[crusher_type][key][0];
+            var value2 = crushers[crusher_type][key][1];
+            if(value1 == "0" || value1 == ""){
+                value1 = "-";
+            }
+            if(value2 == "0" || value2 == ""){
+                value2 = "-";
+            }
+            if(key == "Closed Side Settings" && (value1 == "-" || value2 == "-")){
+                var value1 = crushers[crusher_type]["Discharge Size (mm)"][0];
+                var value2 = crushers[crusher_type]["Discharge Size (mm)"][1];
+                var value1 = value1.split(" - ");
+                var value2 = value2.split(" - ");
+            }
+            table_body_content += "<tr><td>&#8226; "+key+"</td><td>"+value1+"</td><td>"+value2+"</td></tr>"
         }
-        if(key == "Closed Side Settings" && (value1 == "-" || value2 == "-")){
-            var value1 = crushers[crusher_type]["Discharge Size (mm)"][0];
-            var value2 = crushers[crusher_type]["Discharge Size (mm)"][1];
-            var value1 = value1.split(" - ");
-            var value2 = value2.split(" - ");
-        }
-        table_body_content += "<tr><td>&#8226; "+key+"</td><td>"+value1+"</td><td>"+value2+"</td></tr>"
     }
     
     document.getElementById("table_body_content").innerHTML = table_body_content;

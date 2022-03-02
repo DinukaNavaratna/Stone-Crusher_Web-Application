@@ -1,5 +1,22 @@
 <?php
 
+if(isset($_GET['wp']) && isset($_GET['capacity'])){
+    $capacity = $_GET['capacity'];
+    require_once 'db_con.php';
+    try {        
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "select `model`, `spiral_diameter`, `length_of_tub`, `feed_size`, `capacity_min`, `capacity_max`, `speed_of_screw`, `motor_power`, `water_consumption`, `overall_dimention`, `weight` from wp WHERE capacity_min < ".$capacity." AND capacity_max >= ".$capacity." limit 1;";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($results[0]);
+    } catch(PDOException $e) {
+        echo "failed : " . $e->getMessage();
+    }
+    $conn = null;
+    exit;
+}
+
 if(isset($_GET['efficiency'])){
     require_once 'db_con.php';
     try {        
@@ -45,7 +62,7 @@ if(isset($_GET['sieve'])){
                 $stmt = $conn->prepare($sql2);
                 $stmt->execute();
                 $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
                 $s_1_1 = (((($results2[0]['percentage']-$results1[0]['percentage'])*($input_1_1-$results1[0]['size']))/($results2[0]['size']-$results1[0]['size'])) + $results1[0]['percentage']);
             }
             

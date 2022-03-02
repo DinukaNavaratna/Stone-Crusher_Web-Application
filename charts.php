@@ -239,7 +239,7 @@
                   <div class="input-suffix-perc" style="width: 100%; display: inline-block;">
                     <div>
                       <input type="checkbox" min="0" id="m_sand" class="" style="width: 10%; display: inline-block;" placeholder="100" aria-label="output_size">
-                      <label>M-Sand | Percentage from the dust</label>
+                      <label for="m_sand">M-Sand | Percentage from the dust</label>
                       <input type="number" min="0" max="100" id="m_sand_percentage" class="form-control" style="width: 20%; margin-left:3%; display: inline-block;" placeholder="100" aria-label="output_size">
                     </div>
                   </div>
@@ -602,16 +602,40 @@
               </tr>
               
               <tr>
-                <td rowspan="2" colspan="2"> 
-                  <div class="card" onclick="oo('Output');">
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td rowspan="2" style="color:white;"><div class="triangle_up"></div>Dust<br><span id="output_size" style="color:antiquewhite;">0 mm</span><br><span id="output_perc" style="color:antiquewhite;">0 t/h</span></td>
+                <td></td>
+              </tr>
+
+              <tr id="m_row2" class="m_row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr id="m_row3" class="m_row">
+                <td></td>
+                <td></td>
+                <td class="arrow"> 
+                  <p class="arrow-body">&#8595;</p>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr id="m_row1" class="m_row">
+                <td rowspan="2"><span style="color:antiquewhite;">M-Sand</span><div class="triangle_up"></div><span id="wp-output" style="color:antiquewhite;">0 t/h</span></td>
+                <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
+                <td rowspan="2"> 
+                  <div class="card" onclick="oo('Washing Plant');">
                     <div class="card-body pt-3 p-3 text-center">
-                      <h6 class="text-center mb-0" id="output_title">Manufactured Sand</h6>
+                      <h6 class="text-center mb-0" id="wp">Washing Plant</h6>
                       <hr class="horizontal dark my-2">
-                      <span class="text-xs" id="output_value">0 t/h</span>
+                      <span class="text-xs" id="wp1">#000000</span><br>
                     </div>
                   </div>
                 </td>
-                <td rowspan="2"><div class="triangle_up"></div><span id="output_size" style="color:antiquewhite;">0 mm</span><br><span id="output_perc" style="color:antiquewhite;">0 t/h</span></td>
                 <td></td>
               </tr>
 

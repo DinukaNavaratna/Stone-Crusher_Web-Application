@@ -47,6 +47,9 @@
 .s6_row {
   display: none;
 }
+.m_row {
+  display: none;
+}
 
 .triangle_down {
   margin-left: auto;
