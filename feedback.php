@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-    MoraMP
+    Proccessing Plant Design
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -19,10 +19,11 @@
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show bg-gray-444444">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<body class="g-sidenav-show  bg-gray-444444">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="#">
@@ -34,7 +35,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="about.html">
+          <a class="nav-link" href="about.html">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>About Us</title>
@@ -52,7 +53,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">About Us</span>
+            <span class="nav-link-text ms-1" style="color:antiquewhite;">About Us</span>
           </a>
         </li>
         <li class="nav-item">
@@ -96,7 +97,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="feedback.php">
+          <a class="nav-link active" href="#">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>Feedback</title>
@@ -113,54 +114,66 @@
               </g>
             </svg>
             </div>
-            <span class="nav-link-text ms-1" style="color:antiquewhite;">Feedback</span>
+            <span class="nav-link-text ms-1">Feedback</span>
           </a>
         </li>
       </ul>
     </div>
   </aside>
-  <div class="main-content position-relative444444 max-height-vh-100 h-100">
-
-    <div class="container-fluid">
-      <div class="page-header min-height-500 border-radius-xl mt-4" style="background-image: url('assets/img/curved-images/curved14.jpg'); background-position-y: 50%;">
-        <!--<span class="mask bg-gradient-primary opacity-6"></span>-->
-        <span style="margin-top: -15%; z-index: 5; width: 100%; text-align: center;"><h1 style="color: rgb(18, 18, 18); -webkit-text-stroke: 1px white; font-size: 500%; font-family: 'Times New Roman', Times, serif !important;">MoraMP</h1></span>
-      </div>
-      <div class="card card-body blur shadow-blur mx-8 mt-n10 overflow-hidden" syle="margin-top: -150% !important;">
-        <div class="row gx-0" style="text-align: center; color: #000 !important;">
-          We, MoraMP is capable of quickly design and analyze Mineral Processing Plant Flow sheets as well as select the best components, according to customer requirements in the most feasible and user-friendly manner.
-          <br>MoraMP is available online so you can use it wherever you are.
+  <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <div class="container-fluid py-8">
+      <div class="row" id="chart-input1">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-body">
+              <form role="form text-left">
+                <div class="mb-3">
+                  <label for="m_type">Rate this application</label>
+                  <select  class="form-control" name="m_type" id="m_type" aria-label="Name">
+                    <option value="default" disabled selected>Select the rating</option>
+                    <option value="1">1 Star - Worst</option>
+                    <option value="2">2 Star - Bad</option>
+                    <option value="3">3 Star - Neutral</option>
+                    <option value="4">4 Star - Good</option>
+                    <option value="5">5 Star - Best</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="input_size">Enter your feedback here...</label>
+                  <div>
+                    <textarea type="text" rows="5" min="0" id="input_size1" class="form-control" style="width: 100%; display: inline-block;" placeholder="Feedback" value="" aria-label=""></textarea>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onclick="alert('Your feedback has been submitted successfully!');">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <br><br><br>
-      <div class="card card-body blur shadow-blur mx-4 overflow-hidden" style="background-color: rgb(40, 40, 40) !important; border-radius: 0px !important; color: aliceblue;">
-        <div style="text-align: center;">
-          MoraMP-Mineral Processing Plant Flow Sheet Design Software<br>
-          Developed by Department of Earth Resources Engineering – University of Moratuwa<br>
-          Copyright © 2022 | All Rights Reserved
-        </div>
-      </div>
-      <br><br>
     </div>
-  </div>
+  </main>
+
+  <div id="save_chart_btn" title="Save Chart" style="display:none; right:3vw; top:3vh; background-color:#fff; position:fixed; border-radius: 50%;"><button style="background-color:transparent; borders:none; border-radius: 50%; padding:1vw;" onclick="pdf_generator('save', '', '');"><i class="fa fa-save" aria-hidden="true"></i></button></div>
+  <div id="download_pdf_btn" title="Download PDF" style="display:none; right:3vw; bottom:3vh; background-color:#fff; position:fixed; border-radius: 50%;"><button style="background-color:transparent; borders:none; border-radius: 50%; padding:1vw;" onclick="pdf_generator('download', '', 'MoraMP');"><i class="fa fa-download" aria-hidden="true"></i></button></div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
   <!--   Core JS Files   -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
+  <script src="assets/js/custom.js"></script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  <!--<script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>-->
+
 </body>
 
 </html>

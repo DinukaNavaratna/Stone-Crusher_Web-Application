@@ -43,7 +43,7 @@ const rows = [];
 //--------------------- Inout Box Submit Actions ---------------------------
 var m_type, input_size1, input_size2, monthly_output_capacity, working_days_per_month, shifts_per_day, hours_per_shift, expected_efficiency;
 var crushers;
-var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2, m_sand = false, m_sand_percentage;
+var r1_output_size1, r1_output_size2, r2_output_size1, r2_output_size2, r3_output_size1, r3_output_size2, r4_output_size1, r4_output_size2, r5_output_size1, r5_output_size2, m_sand = false, m_sand_percentage, jaw1_css, jaw2_css, cone1_css, cone2_css;
 
 function open_input2(){
     m_type = document.getElementById("m_type").value;
@@ -194,11 +194,19 @@ function create_diagram(){
                                 jaw_max_output1 = crushers[crusher]['Discharge Size (mm)'][0];
                                 jaw_max_input2 = crushers[crusher]['Max Feeding Size (mm)'][1];
                                 jaw_max_output2 = crushers[crusher]['Discharge Size (mm)'][1];
+                                var jaw_dis1 = jaw_max_output1.split(" - ");
+                                var jaw_dis2 = jaw_max_output1.split(" - ");
+                                jaw1_css = jaw_dis1[0]
+                                jaw2_css = jaw_dis2[0]
                             } else if(crusher == "ConeCrusher"){
                                 cone_max_input1 = crushers[crusher]['Max Feeding Size (mm)'][0];
                                 cone_max_output1 = crushers[crusher]['Discharge Size (mm)'][0];
                                 cone_max_input2 = crushers[crusher]['Max Feeding Size (mm)'][1];
                                 cone_max_output2 = crushers[crusher]['Discharge Size (mm)'][1];
+                                var cone_dis1 = jaw_max_output1.split(" - ");
+                                var cone_dis2 = jaw_max_output1.split(" - ");
+                                cone1_css = cone_dis1[0]
+                                cone2_css = cone_dis2[0]
                             }
                             document.getElementById(crusher+"1").innerHTML = crushers[crusher].Model[0];
                             document.getElementById(crusher+"2").innerHTML = crushers[crusher].Model[1];
@@ -339,7 +347,7 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
     if(option == "saved_pdf"){
         download_pdf(saved_pdf_body, pdf_name);
     } else {
-        var pdf_body = "<!DOCTYPE html><html><head></head><body>";
+        var pdf_body = "<!DOCTYPE html><html><head></head><body><h1>Best fit components with specifications</h1><h1>_______________________</h1>";
         var count = 0;
         for(var crusher_type in crushers){
             type = crusher_type.replace(/([A-Z])/g, ' $1').trim()
@@ -387,7 +395,7 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
             }
             pdf_body += `</table><hr>`
         }
-        pdf_body += "</body><h1>_______________________</h1><p>This is a system generated report using Mora MP.</p></html>";
+        pdf_body += "</body><h1>_______________________</h1><h4>High budget:</h4><p>- Manufactured in Germany, USA, Canada</p><p>- Involving relatively large cost</p><p>- High durable</p><p>- Mostly for permanent designs</p><p>- Guranteed for more than 10 years</p><h4>Low budget:</h4><p>- Manufactured in China</p><p>- Involved relatively low cost</p><p>- Low durable</p><p>- Mostly for temporary designs/mobile</p><p>- Guranteed for less than 10 years</p><h1>_______________________</h1><p>This is a system generated report using MoraMP.</p></html>";
 
         if(option == "download"){
             download_pdf(pdf_body, pdf_name);
@@ -508,7 +516,7 @@ function oo(type){
 }
 
 
-//--------------------- Model Box Pop-up ---------------------------
+//--------------------- Reduction Ratio Pop-up ---------------------------
 function oo2(type){
     var modal = document.getElementById("myModal2");
     modal.style.display = "block";
@@ -558,7 +566,7 @@ function oo2(type){
     
     document.getElementById("table_body_content2").innerHTML = table_body_content;
 }
-//--------------------- Model Box Pop-up ---------------------------
+//--------------------- Particle Size Distribution Pop-up ---------------------------
 function oo3(type){
     var modal = document.getElementById("myModal2");
     modal.style.display = "block";
@@ -579,8 +587,43 @@ function oo3(type){
     
     document.getElementById("modal-topic2").innerHTML = type;
     
+    var img1 = "";
+    var img2 = "";
+
+    if (type == "Jaw Crusher"){
+        if(jaw1_css < 50){
+            img1 = "jaw/1";
+        } else if(jaw1_css > 50 && jaw1_css < 125){
+            img1 = "jaw/2";
+        } else if(jaw1_css > 125){
+            img1 = "jaw/3";
+        }
+        if(jaw2_css < 50){
+            img2 = "jaw/1";
+        } else if(jaw1_css > 50 && jaw1_css < 125){
+            img2 = "jaw/1";
+        } else if(jaw1_css > 125){
+            img2 = "jaw/1";
+        }
+    } else if (type == "Cone Crusher"){
+        if(cone1_css < 9){
+            img1 = "cone/1";
+        } else if(cone1_css > 9 && jaw1_css < 20){
+            img1 = "cone/2";
+        } else if(cone1_css > 20){
+            img1 = "cone/3";
+        }
+        if(cone2_css < 9){
+            img2 = "cone/1";
+        } else if(cone2_css > 9 && jaw1_css < 20){
+            img2 = "cone/1";
+        } else if(cone2_css > 20){
+            img2 = "cone/1";
+        }
+    }
     
-    var table_body_content = "<tr><td><img style='width:100%;' src='assets/img/particle_size_distribution.png'></td></tr>";
+    var table_body_content = "<tr><th>Low Budget</th><th>High Budget</th></tr>";
+    table_body_content += "<tr><td><img style='width:100%;' src='assets/img/"+img1+".png'></td><td><img style='width:100%;' src='assets/img/"+img2+".png'></td></tr>";
     
     document.getElementById("table_body_content2").innerHTML = table_body_content;
 }
