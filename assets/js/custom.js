@@ -304,8 +304,8 @@ function create_diagram(){
                         }
                     });
 
-                    document.getElementById("output_perc").innerHTML = Math.round(final_output_capacity*(100-m_sand_percentage)/100)/100+" t/h";
-                    document.getElementById("wp-output").innerHTML = Math.round(final_output_capacity*(m_sand_percentage)/100)/100+" t/h";
+                    document.getElementById("output_perc").innerHTML = (final_output_capacity*(100-m_sand_percentage)/100)+" t/h";
+                    document.getElementById("wp-output").innerHTML = (final_output_capacity*(m_sand_percentage)/100)+" t/h";
                     
                     document.getElementById("m_row1").classList.remove("m_row");
                     document.getElementById("m_row2").classList.remove("m_row");
