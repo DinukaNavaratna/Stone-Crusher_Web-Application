@@ -37,7 +37,7 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $flow_chart_count = $results[0]['count'];
         
-        $sql = "select id, timestamp, name, pdf_body from charts ORDER BY id DESC LIMIT 12;";
+        $sql = "select id, timestamp, name, pdf_body from charts ORDER BY id DESC LIMIT 20;";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $flow_charts = $stmt->fetchAll(PDO::FETCH_ASSOC);

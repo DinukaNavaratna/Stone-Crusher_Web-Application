@@ -270,16 +270,45 @@
             <div class="card-body px-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Machine Model</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Capacity (t/h)</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Discharge Size (mm)</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Power (kw)</th>
-                    </tr>
-                  </thead>
                   <tbody>
-                    <?php for($i=0; $i<count($machines); $i++){ ?>
+                    <?php for($i=0; $i<count($machines); $i++){ 
+                        if($i%2 == 0){ ?>
+                        <thead>
+                          <?php if($i == 0){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Jaw Crushers - Low Budget</a></td>
+                          </tr>
+                          <?php } else if($i == 2){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Jaw Crushers - High Budget</a></td>
+                          </tr>
+                          <?php } else if($i == 4){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Cone Crushers - Low Budget</a></td>
+                          </tr>
+                          <?php } else if($i == 6){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Cone Crushers - High Budget</a></td>
+                          </tr>
+                          <?php } else if($i == 8){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Screens - Low Budget</a></td>
+                          </tr>
+                          <?php } else if($i == 10){ ?>
+                          <tr style="padding-left:2vw;">
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Screens - High Budget</a></td>
+                          </tr>
+                          <?php } ?>
+                          <tr style="padding-left:2vw;">
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Machine Model</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Capacity (t/h)</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Discharge Size (mm)</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Power (kw)</th>
+                          </tr>
+                        </thead>
+                      <?php
+                        }
+                      ?>
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
@@ -339,7 +368,7 @@
     </div>
   </main>
   <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2" title="Log out">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2" href="index.html" title="Log out">
       <i class="fa fa-sign-out py-2"> </i>
     </a>
   </div>
