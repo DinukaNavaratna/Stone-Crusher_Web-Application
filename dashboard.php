@@ -276,27 +276,27 @@
                         <thead>
                           <?php if($i == 0){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Jaw Crushers - Low Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Jaw Crushers - Low Budget</a></td>
                           </tr>
                           <?php } else if($i == 2){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Jaw Crushers - High Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Jaw Crushers - High Budget</a></td>
                           </tr>
                           <?php } else if($i == 4){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Cone Crushers - Low Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Cone Crushers - Low Budget</a></td>
                           </tr>
                           <?php } else if($i == 6){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Cone Crushers - High Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Cone Crushers - High Budget</a></td>
                           </tr>
                           <?php } else if($i == 8){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Screens - Low Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Screens - Low Budget</a></td>
                           </tr>
                           <?php } else if($i == 10){ ?>
                           <tr style="padding-left:2vw;">
-                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#">Screens - High Budget</a></td>
+                            <td colspan="4" class="text-uppercase text-secondary text-s font-weight-bolder" style="text-align:center;"><a href="#" title="See More">Screens - High Budget</a></td>
                           </tr>
                           <?php } ?>
                           <tr style="padding-left:2vw;">
