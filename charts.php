@@ -442,7 +442,7 @@
               </tr>
               
               <tr id="s2_row1" class="s2_row">
-                <td rowspan="2"><span id="screen2_output" style="color:antiquewhite;">0 mm</span><br><span id="s2-s3" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen2_output" style="color:antiquewhite;">0 mm</span><br><span id="s2-s3" style="color:antiquewhite;">0 t/h</span><br><img src="assets/img/outputs/1.png" style="width:10vw;"/></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 2');">
@@ -474,7 +474,7 @@
               </tr>
               
               <tr id="s3_row1" class="s3_row">
-                <td rowspan="2"></div><span id="screen3_output" style="color:antiquewhite;">0 mm</span><br><span id="s3-s4" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></td>
+                <td rowspan="2"></div><span id="screen3_output" style="color:antiquewhite;">0 mm</span><br><span id="s3-s4" style="color:antiquewhite;">0 t/h</span><br><img src="assets/img/outputs/2.png" style="width:10vw;"/></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 3');">
@@ -506,7 +506,7 @@
               </tr>
               
               <tr id="s4_row1" class="s4_row">
-                <td rowspan="2"><span id="screen4_output" style="color:antiquewhite;">0 mm</span><br><span id="s4-s5" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen4_output" style="color:antiquewhite;">0 mm</span><br><span id="s4-s5" style="color:antiquewhite;">0 t/h</span><br><img src="assets/img/outputs/3.png" style="width:10vw;"/></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 4');">
@@ -538,7 +538,7 @@
               </tr>
               
               <tr id="s5_row1" class="s5_row">
-                <td rowspan="2"><span id="screen5_output" style="color:antiquewhite;">0 mm</span><br><span id="s5-s6" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen5_output" style="color:antiquewhite;">0 mm</span><br><span id="s5-s6" style="color:antiquewhite;">0 t/h</span><br><img src="assets/img/outputs/4.png" style="width:10vw;"/></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 5');">
@@ -570,7 +570,7 @@
               </tr>
               
               <tr id="s6_row1" class="s6_row">
-                <td rowspan="2"><span id="screen6_output" style="color:antiquewhite;">0 mm</span><br><span id="s6-output" style="color:antiquewhite;">0 t/h</span><div class="triangle_up"></div></td>
+                <td rowspan="2"><span id="screen6_output" style="color:antiquewhite;">0 mm</span><br><span id="s6-output" style="color:antiquewhite;">0 t/h</span><br><img src="assets/img/outputs/4.png" style="width:10vw;"/></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Screen 6');">
@@ -604,7 +604,7 @@
               <tr>
                 <td rowspan="2"></td>
                 <td rowspan="2"></td>
-                <td rowspan="2" style="color:white;"><div class="triangle_up"></div>Dust<br><span id="output_size" style="color:antiquewhite;">0 mm</span><br><span id="output_perc" style="color:antiquewhite;">0 t/h</span></td>
+                <td rowspan="2" style="color:white;"><img src="assets/img/outputs/4.png" style="width:10vw;"/><br>Dust<br><span id="output_size" style="color:antiquewhite;">0 mm</span><br><span id="output_perc" style="color:antiquewhite;">0 t/h</span></td>
                 <td></td>
               </tr>
 
@@ -625,7 +625,7 @@
               </tr>
 
               <tr id="m_row1" class="m_row">
-                <td rowspan="2"><span style="color:antiquewhite;">M-Sand</span><div class="triangle_up"></div><span id="wp-output" style="color:antiquewhite;">0 t/h</span></td>
+                <td rowspan="2"><span style="color:antiquewhite;">M-Sand</span><br><img src="assets/img/outputs/4.png" style="width:10vw;"/><br><span id="wp-output" style="color:antiquewhite;">0 t/h</span></td>
                 <td rowspan="2"><p class="arrow-body">&#8592;</p><p class="arrow-body-p"></p></td>
                 <td rowspan="2"> 
                   <div class="card" onclick="oo('Washing Plant');">
