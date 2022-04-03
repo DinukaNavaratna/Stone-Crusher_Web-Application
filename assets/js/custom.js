@@ -390,7 +390,10 @@ function pdf_generator(option, saved_pdf_body, pdf_name){
                     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
                 }
                 key = words.join(" ");
-                value = value.replace("&#8804;", "<=");
+                console.log("--------------------------------")
+                console.log(value);
+                console.log("--------------------------------")
+                value = String(value).replace("&#8804;", "<=");
                 pdf_body += "<tr><td>&#8226; " + key + "</td><td>" + value + "</td></tr>";
             }
             pdf_body += `</table><hr>`
